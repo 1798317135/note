@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../html5/js/jquery-3.3.1.js"></script>
+	<script type="text/html"><!--i g m-->
+		$(function() {
+			var str='Hello word1231321321sdfasdf呵i呵呵￥';
+			var aa = str.replace(/o/ig,'-');//i不区分大小写 g匹配全局 m多行匹配 \d 0-9匹配第一个数字
+			console.log(aa)
+		});
+	</script>
+	<script type="text/html"><!--\d \w . -->
+		// 1.0 /d可以匹配0-9的数字
+		// 2.0 /w可以匹配数字 字母 下划线
+		// 3.0 .可以匹配除了/n之外的所有字符
+		var str = "abc123+-*- \n_";
+		var aa = str.match(/\w\d./g);
+		console.log(aa);
+	</script>
+	<script type="text/html">
+		//[]包含多个匹配符
+		//{}匹配次数修饰符{n,m}n~m{n,}n~max{0,n}
+		//? 前面的匹配0次或者一次
+		//* 匹配0次或者无限次
+		//+匹配最少一次或者无限次
+		//^中括号里面代表去翻 在外面代表从开始匹配
+		//$从开始持续匹配到结束
+		//\ 转义符可以匹配特殊符号
+		var str = "13781868761";
+		var aa = str.match(/^1[3589]\d{0,9}$/g);
+		console.log(aa);
+	</script>
+	<script type="text/html">
+		//1.0 条件分支|
+		// (？：)的前面加上？：内容是一个独立的整体，
+		// 括号的内容需要进行分组单独匹配，
+		var fil = "asdf$-a.jpeg";
+		var aa = fil.match(/\.(?:png|gif|jpe?g)/);
+		console.log(aa);
+	</script>
+	<script type="text/html"><!-- 中文 -->
+		var str = "圣诞快乐房间里看见413adf&*（）";
+		var bb = "龥";
+		var aa = str.match(/[\u4E00-\u9fA5]/g);
+		console.info(aa);
+		console.log(escape("龥"));
+	</script>
+	<script type="text/html">
+		//默认是贪婪模式在修饰符号后面加？是懒惰模式
+		var aa = "aababab";
+		var str =aa.match(/a.*?b/g);
+		console.log(str);
+	</script>
+	<script type="text/html"><!-- 图片匹配 -->
+		var img= '图片1<img class="aa" src="../html5/images/1.jpg" alt="" >...图片2<img class="aa" Src=../html5/images/1.jpg alt=""/>...图片1<Img class="aa" src="../html5/images/1.jpg" alt="">...图片1<img class="aa" src="" alt="" >';
+		var reg = /<img.*?src=['"]?.+?['"]?.*?[\/]?>/gi;
+		img.match(reg);  
+	</script>
+	<script type="text/html"><!-- ip地址匹配 -->
+		//0.0.0.0 255.255.255.255
+		//250-255 25[0-5]
+		//200-249 2[0-4]\d
+		//0~199   
+		//0-9 \d
+		//10-99 [1-9]?\d
+		//100-199 1\d{2}
+		var rge=/^(?:(?:25[0-5]|2[0-4]\d|[1-9]?\d|1\d{2})\.){3}(?:25[0-5]|2[0-4]\d|[1-9]?\d|1\d{2})$/;
+		var ip ="255.255.255.01";
+		console.log(ip.match(rge));
+
+	</script>
+	<script>
+		//exec()方法支持全局匹配并且分组
+		//regExp 正则队像
+		//test()匹配成功返回true 否则 false
+		var em = "1798317135@qq.com,7620231@qq.com,416574321@qq.com";
+		var reg = /(\d+)*@qq.com/g;
+		var regExp =new RegExp(reg);
+		while(temp = regExp.exec(em)){
+			console.log(temp[0]+","+temp[1]),lastindex;
+		}
+		var aa = "1813768";
+		var reg1 = RegExp(/^1[3589]\d{9}$/);
+		var bb = reg1.test(aa);
+		console.log(bb);
+	</script>
+</head>
+<body>
+</body>
+</html>

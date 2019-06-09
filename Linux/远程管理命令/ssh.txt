@@ -1,0 +1,51 @@
+ssh 分为 ssh客户端 和 ssh服务器
+ubuntu 默认已经安装了ssh客户端
+
+通常我们使用 ssh客户端 远程对 ssh服务器进行管理
+
+1.0 他会对信息进行加密
+2.0 他会对传输的数据进行压缩
+
+端口号默认情况下
+ssh 22
+web 80
+https 445
+ftp 21
+
+远程连接 ssh服务器
+ssh [-p port]user@地址
+
+-- scp 远程复制文件或者目录
+    他和ssh连接类似
+    他的指定端口是大写的-P
+    -r 复制目录
+    上传
+    scp -P 22 -r 本地目录 root@122.114.78.111:服务器的目录下
+
+    下载 
+    scp -P 22 -r root@122.114.78.111:服务器的目录 本地的目录下
+
+-- .ssh 目录下储存这已知连接的ssh信息
+    know_hosts 这个文件储存已经连接好的服务器信息
+
+-- ssh-keygen 命令三次回车生成一个ssh公钥
+    id_rsa  私钥
+    id_rsa.pub 公钥
+    我们需要把这个公钥传给 服务器
+    如果是windows的需要创建一个ssh-copy-id.py这个文件
+    如果ubuntu 直接用ssh-copy-id root@122.114.78.111 密码 然后下次连接不用密码
+
+-- .ssh\config 创建这个文件给服务器配置别名 方便登陆
+    Host myserver
+        HostName 122.114.78.1211 #地址
+        User root   #用户明
+        Port 22     #端口
+
+    - 连接直接用 ssh myserver
+
+-- printf "ClientAliveInterval 30\nClientAliveCountMax 6 >> /etc/ssh/sshd_config 
+    让服务器每30秒想客户端发送心跳 如果连续6次连接失败  则断开
+    这样就不会自动断开了
+
+
+

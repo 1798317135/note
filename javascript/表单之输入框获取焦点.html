@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text">
+</body>
+</html>
+<script>
+	window.onload=function(){
+		//获取需要的焦点
+		var name= document.getElementsByTagName("input")[0];
+		//获得焦点
+		name.onfocus=function(){
+			this.style.width="600px";
+			this.style.height="300px";
+			this.style.outline="none";
+		}
+		//失去焦点
+		name.onblur=function(){
+			this.style.background="#ccc";
+		}
+	}
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			height: 300px;
+			width: 500px;
+			background-color: red;
+			margin: 20px auto;
+			overflow: hidden;
+		}
+		ul li{
+			list-style: none;
+			margin:0 auto;
+			height: 300px;
+			width: 100px;
+			background-color: pink;
+			float: left;
+			border:1px solid black;
+			box-sizing: border-box;
+			transition: width 1s ease;
+		/*	transition-property: width;
+			transition-duration: 2s;
+			transition-timing-function:ease;
+			transition-delay: 0.2s;*/
+
+			position: relative;
+		}
+		ul li img{
+			width: 220px;
+			height: 300px;
+		}
+		ul li img:first-of-type{
+			width: 30px;
+			height: 20px;
+			position: absolute;
+			top: 50%;
+			left:-10px;
+			margin-top:-10px;
+		}
+		ul:hover li{
+			width: 70px;
+		}
+		ul li:hover{
+			width: 220px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li><img src="images/timg.jpg" alt=""><img src="images/gouqi.jpg" alt=""></li>
+		<li><img src="images/timg.jpg" alt=""><img src="images/gouqi.jpg" alt=""></li>
+		<li><img src="images/timg.jpg" alt=""><img src="images/gouqi.jpg" alt=""></li>
+		<li><img src="images/timg.jpg" alt=""><img src="images/gouqi.jpg" alt=""></li>
+		<li><img src="images/timg.jpg" alt=""><img src="images/gouqi.jpg" alt=""></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			// //实时监听输入框textarea
+			// $('form').delegate('textarea','propertychange input',function(){
+			// 	//判断输入内容是否长度大于0
+			// 	if ($(this).val().length>0) {
+			// 		//如果大于0 启用提交按钮
+			// 		$('input[type="submit"]').removeAttr('disabled').attr('value', '可以提交');;
+			// 	}else{
+			// 		//否则禁用提交按钮
+			// 		$('input[type="submit"]').prop('disabled','true').attr('value','内容为空');
+			// 	}
+			// });
+			//监听表单里的textarea 输入框的input时间 
+			$('form').on('input','textarea',function(){
+				//判断输入文本长度
+				if ($(this).val().length>0) {
+				//监听input提交按钮
+					$('input').prop('disabled',false).attr('value', '可以提交');
+				}else{
+					$('input').prop('disabled','true').attr('value', '内容为空');
+				}
+				$(this).attr('maxlength', '100');
+				cc=100-$(this).val().length
+				dd="您还可以输入"+cc+"个字符";
+				$('strong').text(dd)
+			});
+			//监听提交按钮
+			$('input').click(function(event) {
+				//阻止提交
+				event.preventDefault();
+				//获取输入内容
+				var $text=$('textarea').val();
+				//创建节点把输入的文本插入到节点当中 
+				var $weibo= chuangjianjiedianhanshu($text);
+				//把节点插入到文档中
+				$('article').prepend($weibo);
+			});
+				//获得时间
+				// 	mydate.getYear(); //获取当前年份(2位) 
+				// 	mydate.getFullYear(); //获取完整的年份(4位,1970-????) 
+				// 	mydate.getMonth(); //获取当前月份(0-11,0代表1月) 
+				// 	mydate.getDate(); //获取当前日(1-31) 
+				// 	mydate.getDay(); //获取当前星期X(0-6,0代表星期天) 
+				// 	mydate.getTime(); //获取当前时间(从1970.1.1开始的毫秒数) 
+				// 	mydate.getHours(); //获取当前小时数(0-23) 
+				// 	mydate.getMinutes(); //获取当前分钟数(0-59) 
+				// 	mydate.getSeconds(); //获取当前秒数(0-59) 
+				// 	mydate.getMilliseconds(); //获取当前毫秒数(0-999) 
+				// 	mydate.toLocaleDateString(); //获取当前日期 
+				// var mytime=mydate.toLocaleTimeString(); //获取当前时间 
+				// 	mydate.toLocaleString( ); //获取日期与时间 			
+				// var date=new Date();
+				// var newyear = date.getFullYear();     //得到当前日期年份  
+				// var newmonth = date.getMonth() + 1;   //得到当前日期月份（注意： getMonth()方法一月为 0, 二月为 1, 以此类推。）  
+				var mydate = new Date();
+				var mytime=mydate.toLocaleString(); //获取当前日期加时间
+			function chuangjianjiedianhanshu($text){
+				var $weibo = $("<section><p>"+$text+"</p> <span>删除</span><span>踩&nbsp;0</span><span>顶&nbsp;0</span><time>"+mytime+"</time></section>");
+				return $weibo;
+			}
+			//动态监听监听顶点击事件
+			$('article').on('click',('span:nth-of-type(3)'),function(){
+				var bb=$(this).html();
+				var aa=bb.replace(/[^\d\s]/g,'');
+				var cc=parseInt(aa);
+				aa=cc+1;
+				dd="顶&nbsp;"+aa
+				$(this).html(dd)
+			})
+			//监听踩点击事件
+			$('article').on('click',('span:nth-of-type(2)'),function(){
+				var bb=$(this).html();
+				var aa=bb.replace(/[^\d\s]/g,'');
+				var cc=parseInt(aa);
+				aa=cc+1;
+				dd="踩&nbsp;"+aa
+				$(this).html(dd)
+			})
+			//监听删除点击事件
+			$('article').on('click',('span:nth-of-type(1)'),function(){
+				$(this).parentsUntil('article').remove();
+			})
+		});
+	</script>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			width: 100%;
+			height:100%;
+			background-image: url(images/IDR_THEME_NTP_BACKGROUND.png);
+			background-repeat: no-repeat;
+			background-attachment: fixed; 
+			background-size:cover;
+			background-position: center;
+		}
+		nav{
+			width: 100%;
+			height: 50px;
+			background-color: rgba(	47,79,79,0.5);
+			position: fixed;
+			top:0;
+			left:0;
+			z-index: 10;
+		}
+		nav>ul{
+			width: 80%;
+			height: 50px;
+			margin: 0 auto;
+			display: flex;
+		}
+		nav>ul>li{
+			list-style: none;
+			flex: 1;
+			display: flex;
+			justify-content: center;
+
+		}
+		nav>ul>li>a{
+			display: inline-block;
+			width: 80%;
+			height:50px;
+			line-height: 50px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 1em;
+			font-weight: bolder;
+			font-family: "微软雅黑";
+			color:white;
+			background-color:#222222;
+		}
+		nav>ul>li a:hover{
+			background-color:orange;
+			color:#222222;
+		}
+		nav>ul>li:hover ul{
+			display: block;
+		}
+		nav>ul>li>ul{
+			position:absolute;
+			top:50px;
+			left:222px;
+			display: none;
+		}
+		nav>ul>li>ul>li{
+			list-style: none;
+		}
+
+		nav>ul>li>ul>li a{
+			display: inline-block;
+			width: 386%;
+			height:50px;
+			line-height: 50px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 1em;
+			font-weight: bolder;
+			font-family: "微软雅黑";
+			color:white;
+			background-color:#222222;
+		}
+		form{
+			width: 80%;
+			height: 400px;
+			margin: 75px auto 0px;
+			border: 1px solid #ccc;
+		}
+		form textarea{
+			width: 100%;
+			height: 300px;
+			outline: none;
+			resize: none;
+			font-size: 20px;
+			padding:1em;
+			box-sizing: border-box;
+			font-family: '微软雅黑';
+		}
+		textarea:focus{
+			background-color: #ccc;
+		}
+		form input[type="submit"]{
+			width: 100px;
+			height: 40px;
+			background-color:skyblue;
+			font-size: 1em;
+			float: right;
+			margin: 1em;
+		}
+		article{
+			width: 80%;
+			height: auto;
+			margin: 0 auto;
+			max-height: 3000px;
+			overflow: auto;
+
+		}
+		article>section{
+			width: 80%;
+			height: auto;
+			background-color: #8B2500;
+			margin:30px auto;
+			color: #ccc;
+
+		}
+		article>section>p{
+			padding: 30px;
+			box-sizing: border-box;
+			font-size: 1.5em;
+			width: 100%;
+			height: 300px;
+			overflow: auto;
+			border-bottom: 1px solid black;
+		}
+		article>section span{
+			display: inline-block;
+			width:50px;
+			height: 50px;
+			background-color: green;
+			line-height: 50px;
+			text-align: center;
+			float: right;
+			margin-bottom: 10px;
+			border-right: 1px solid black;
+			cursor: pointer;
+		}
+		span::selection{
+			color: red;
+			moz-user-select: -moz-none; 
+			-moz-user-select: none; 
+			-o-user-select:none; 
+			-khtml-user-select:none; 
+			-webkit-user-select:none; 
+			-ms-user-select:none; 
+			user-select:none;
+			-webkit-touch-callout: none;  
+		}
+		article>section time{
+			display: inline-block;
+			line-height: 50px;
+			max-width: 300px;
+			height: 50px;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="javascript:">一级导航</a>
+				<ul>
+					<li><a href="">二级导航</a></li>
+					<li><a href="">二级导航</a></li>
+					<li><a href="">二级导航</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:">一级导航</a></li>
+			<li><a href="javascript:">一级导航</a></li>
+			<li><a href="javascript:">一级导航</a></li>
+			<li><a href="javascript:">一级导航</a></li>
+		</ul>
+	</nav>
+	<form action="输入框监听_submit" method="get" accept-charset="utf-8">
+		<!-- 输入框监听_submit -->
+		<textarea name="he" ></textarea>
+		<strong style="color:red">nisdfsa</strong>
+		<input type="submit" name="he" value="提交按钮" disabled>
+
+	</form>
+	<article>
+	</article>
+</body>
+</html>

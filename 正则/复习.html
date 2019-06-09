@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    // str = "aabab"
+    // result = str.match(/ab/)
+    // console.log(result)
+    window.onload = function(){
+        // console.log(document.forms[0].aa.value = "465")
+        // let aa =10
+        // console.log(aa)
+       // function test(argument) {
+       //     var count = 0
+       //     function inner(){
+       //          count ++
+       //          return count
+       //     }
+       //     return inner
+       // }
+       //  var counts = test()
+       // var add = (function(argument) {
+       //     let conunt = 0
+       //     return ()=>{return conunt+=1;}
+       // })()
+       //  console.log(add())
+       //  console.log(add())
+       //  console.log(add())
+       //  console.log(add())
+       var p = document.getElementsByTagName("p")[0];
+
+       p.onclick = function(){
+            this.innerText = Date()
+        }
+    }
+    
+</script>
+<style>
+    html{
+        font-size: 10px;
+    }
+    p{
+        width: 30rem;
+        height: 20rem;
+        background-color:red;
+    }
+</style>
+<body>
+    <!-- <form action="复习_submit" method="get" accept-charset="utf-8">
+        <input type="text" name="aa" value="" placeholder="">
+    </form> -->
+    <p></p>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  div { background: white; }
+  .red { background: red; }
+  .red.green { background: green; }
+  .blue{
+  	background-color: blue;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+ <div>
+ 	hehehehehehehehheeheh
+ </div>
+ <div>This div should be white</div>
+ <div>This div will be green because it now has the "green" and "red" classes.It would be red if the addClass function failed.</div>
+ <div>This div should be white</div>
+ <p>There are zero green divs</p>
+ 
+<script>
+//给第三个div加上class名red 使其变为红色
+	$('div').eq(3).addClass('red')
+	//index是被选元素的索引位置，currenclass是被选中元素组中带有某个类名的元素，可以检索类名
+	  $("div").addClass(function(index, currentClass) {
+	    var addedClass;
+	    if ( currentClass === "red" ) { //在元素中检索带有red类名的div
+	      addedClass = "blue";  //把blue这个类名给他
+	      $("p").text("There is one green div"+index);
+	    }
+	    return addedClass;
+	  });
+</script>
+ 
+</body>
+</html>

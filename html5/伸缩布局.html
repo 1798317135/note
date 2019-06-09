@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta name="name" content="content">
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/1.css">
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+		}
+		ul{
+			background-color:purple;
+			width: 800px;
+			height: 800px;
+			margin:0 auto;
+			margin-top:30px;
+			display:flex;
+			flex-direction: row;/* row-serverse横向反方向 column竖向 column-reverse 竖向反方向*/
+			flex-wrap: wrap; /*nowrap 不换行 wrap-reverse反方向换行 也就是换行并且第二行变成的一行*/
+			flex-flow: row wrap;/* 主轴方向和换行方式的连写形式*/
+			justify-content:space-around/*flex-start*//*flex-end*//*center*/ /*space-between;*/ /*space-around*/; /*主轴上项目的对齐方式*/
+			align-items:center; /*侧轴的对齐方式*/ /*stretch 如果项目没有设置高度则或者auto则高度铺满盒子*//*flex-start 侧轴开始位置 flex-end侧轴结束位置 baseline以项目文字底部基线对齐*/
+			align-content: space-around; /*侧轴多轴的对齐方式*/ /*stretch 铺满 flex-start 侧轴开始位置 flex-end侧轴结束位置 space-between 侧轴的两端对齐 space-around 全部侧轴两端对齐并且两端留有项目间隔的二分之一间隙*/
+		}
+		ul li{
+			background-color:green;
+			list-style-type: none;
+			width: 100px;
+			height: 100px;
+			border:black solid 3px;
+			text-align:center; 
+			line-height:100px;
+			transition: all 0.5s;
+		}
+		.one{
+			order: 2; /*排序*/
+			flex-grow:1; /*按比例占满默认为0*/
+			flex-shrink: 1; /*同比例缩小默认为1*/
+			flex-basis: auto; /*单个设置项目的占有的size默认auto*/
+			flex:0 1 auto; /*flex-grow和flex-shirink 和 flex-basis的连写形式*/
+		}
+		.non{
+			flex-grow: 1;
+			flex-shrink: 0;
+		}
+		.ti{
+			flex-grow: 1;
+			flex-shrink: 2;
+			align-self: flex-end; /*单独设置项目侧轴的对齐方式可以覆盖algin-items的参数*/
+		}
+		ul li:hover{
+			transform: scale(1.2);
+			box-shadow: 10px 10px 10px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="one">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li class="non">9</li>
+		<li class="ti">10</li>
+	</ul>
+	<form action="http//www.baidu.com" method="get" target="">
+		<input type="text" name="text"><br>
+		<input type="password" name="password" value=""><br>
+		<input type="radio" name="sex" checked="checked">男
+		<input type="radio" name="sex">女
+		<input type="radio" name="sex" value="">保密
+		<input type="checked" name="">
+		<input type="reset">
+		<input type="submit">
+	</form>
+</body>
+</html>

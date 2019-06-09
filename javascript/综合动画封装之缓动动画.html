@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			width: 50px;
+			height: 50px;
+			background-color:red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<button>向左移动</button>
+	<button>向右移动</button>
+	<div id="box"></div>
+	<script src="myFun函数库.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.querySelector("#box");
+			var btn = document.querySelector("button");
+			var btn1 = document.querySelectorAll("button")[1];
+			//1.0 监听按钮的点击
+			btn.onclick = function(){
+				slowAnimation(box,{"left":500,"width":300,"opacity":0.5},0.2,function(){
+					slowAnimation(box,{"right":300,"height":400,"opacity":1},0.2);
+				})
+			}
+			btn1.onclick = function(){
+				slowAnimation(box,{"top":300,"height":400,"opacity":0.2},0.2);
+			}
+			/**
+			 * [slowAnimation 缓动动画封装]
+			 * @param  {[object]}   obj     [节点]
+			 * @param  {[json]}   json    [用json传入参数]
+			 * @param  {[float]}   slow    [缓动系数0~1]
+			 * @param  {Function} fn      [回调函数]
+			 * @param  {[float]}   opacity [0~1]
+			 * @return {[type]}           [description]
+			 */
+			// function slowAnimation(obj,json,slow,fn,opacity){
+			// 	//1.0 清除定时器
+			// 	clearInterval(obj.timer);
+			// 	var stepSize=0,start=0,target=0; 
+			// 	//1.1 标记真的时候说明已经走完 清除定时器
+			// 	var flag = false;
+			// 		//2.0 开启定时器
+			// 		obj.timer = setInterval(function(){
+			// 			//2.0.0 遍历json数据
+			// 			for (key in json){
+			// 				if (key === "opacity") {
+			// 					//2.0.1 判断opacity 如果没有就取100；
+			// 					start = Math.round(parseFloat(getStyleAttr(obj,key))*100)||100;
+			// 					target = parseInt(json[key]*100);
+			// 				}else{ 
+			// 					//2.0.2其他情况如果没有值 就取0；
+			// 					start = parseInt(getStyleAttr(obj,key)) || 0;
+			// 					target = parseInt(json[key]);
+			// 				}
+							
+			// 				//2.1求出步长
+			// 				stepSize = (target - start) * slow;
+
+			// 				//2.2 取整步长 如果目标值 大于开始 就向上取整 否则就向下取整
+			// 				stepSize = (target>start)?Math.ceil(stepSize):Math.floor(stepSize);
+
+			// 				//2.3 动起来style后面想改变属性，用下标方式[]}
+			// 				if (key === "opacity") { 
+			// 					//2.3.1 判断opacity
+			// 					//兼容全部
+			// 					obj.style.opacity = (start + stepSize)/100;
+			// 					//兼容ie8
+			// 					obj.style.filter="alpha(opacity:"+(start + stepSize)+")";
+
+			// 				}else{
+			// 					//2.3.2 其他
+			// 					obj.style[key] =  start + stepSize+"px";
+			// 				}
+			// 				//2.4 规定边界值 当他不等于目标值的时候为false 直到遍历完成跳出
+			// 				if (start === target) {
+			// 					flag = true;
+			// 				}
+			// 			}
+			// 			//3.0 当遍历完成 进入
+			// 			if (flag){
+			// 				clearInterval(obj.timer);
+			// 				//3.1 如果回调函数传参那就执行函数
+			// 				if(fn){
+			// 					fn();
+			// 				}
+			// 			}
+			// 		},20)
+			// }
+			// /**
+			// * [getStyleAttr 获取css样式的兼容式写法]
+			// * @param  {[object]} obj  [获取的对象]
+			// * @param  {[string]} attr [属性]
+			// * @return {[string]}      [css的属性值]
+			// */
+			// function getStyleAttr(obj,attr){
+			// 	if (obj.currentStyle) { 
+			// 		//兼容 ie and opera
+			// 		return obj.currentStyle[attr];
+			// 	}else{
+			// 		//全部主流浏览器
+			// 		return window.getComputedStyle(obj,null)[attr];
+			// 	}
+			// }
+		}
+	</script>
+</body>
+</html>

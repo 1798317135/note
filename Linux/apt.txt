@@ -1,0 +1,16 @@
+--- 安装包
+    如果安装多个包 用空格隔开
+    sudo apt install xxx xxx
+
+--- 删除包
+    sudo remove xxx
+    如果 加上 --purge会把配置文件也删除
+    sudo remove --purge xxx xxx
+
+--- 更新索引
+    更新后可以获得 最新的apt的包
+    sudo apt update
+
+--- 
+
+

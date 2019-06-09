@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var url = "http://www.baidu.com";
+		//encodeURIComponent编码让服务器识别
+		//编码
+		var encodestr = encodeURIComponent(url);
+		console.log(encodestr);//http%3A%2F%2Fwww.baidu.com
+
+		//decodeURIComponent解码让留言器识别
+		//解码
+		var decodestr = decodeURIComponent(encodestr);
+		console.log(decodestr);
+	</script>
+</body>
+</html>

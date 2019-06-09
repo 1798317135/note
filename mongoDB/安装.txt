@@ -1,0 +1,44 @@
+1.0 创建数据目录
+E:\
+md "data\db"
+
+2.0 启动mongodb 
+mongod.exe" --dbpath="e:\data\db"
+
+3.0 把mongo.exe 文件夹添加到环境变量
+mongo
+
+4.0 创建mongo服务
+-- 首先创建
+md D:\MongoDbData\log\
+cd.>MongoDB.log
+
+mongod --dbpath "D:\MongoDbData" --logpath "D:\MongoDbData\log\MongoDB.log" --install --serviceName "MongoDB"
+
+5.0 启动服务
+net start mongodb
+
+6.0 关闭服务
+net stop mogodb
+
+7.0 删除服务
+mongod --dbpath "D:\MongoDbData" --logpath "D:\MongoDbData\log\MongoDB.log" --install --remove "MongoDB"
+
+
+######################## ubuntu
+先清楚原来的程序包
+sudo apt list --installed | grep mongodbsudo apt remove mongodbsudo apt purge mongodbmongodb
+
+
+
+1.0 导入公钥
+sudo apt-key adv --keyserver hkp：//keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+2.0 创建列表文件
+    查看一下系统的版本来创建响应的版本
+    lsb_release -dc
+
+    echo  “deb [arch = amd64] https://repo.mongodb.org/apt/ubuntu bionic / mongodb-org / 4.0 multiverse”  | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+
+3.0 然后更新以下
+sudo apt update

@@ -1,0 +1,7 @@
+参考 https://www.cnblogs.com/feigao/p/8717520.html
+
+1.0 添加 cmder 到右键菜单
+    配置环境变量后，在管理员权限的终端输入以下语句。
+    Win8或者Win10可以直接 win+x 再按 a 键进入。
+    Cmder.exe /REGISTER ALL
+

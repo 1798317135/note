@@ -1,0 +1,28 @@
+1.0 第一步检查环境 和 依赖包
+
+    dpkg -l | grep zlib #查看是否安装zlib
+
+    解决依赖包openssl安装，命令：
+    openssl 可以把http 转换为 https：
+    sudo apt-get install openssl libssl-dev
+
+    解决依赖包pcre安装，命令：
+    sudo apt-get install libpcre3 libpcre3-dev
+
+    解决依赖包zlib安装，命令：
+    sudo apt-get install zlib1g-dev
+
+2.0 配置 
+    ./configtrue --help 执行这个配置文件 配置以下安装的目录
+
+3.0 make 编译
+
+4.0 make install 安装如果已经是安装新模块 就不需要这一步
+
+5.0 替换nginx 二进制
+cp /usr/src/nginx-1.8.1/objs/nginx /usr/local/nginx/sbin/nginx
+
+6.0 建立软连
+ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/nginx(做软链，添加到环境变量)
+nginx -t (检测配置文件)
+nginx -s reload (平滑重启)

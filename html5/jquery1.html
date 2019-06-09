@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>.data</title>
+	<script src="js/jquery-3.3.1.js"></script>
+	<script>
+		jQuery(document).ready(function($) {
+			$("<input>",{
+				type:"text",
+				"class":"hehe",
+				on:({click:function(){
+					alert('heh')
+				}})
+				}).appendTo('form');
+		});
+	</script>
+	<style type="text/css" media="screen">
+		div{
+			width: 300px;
+			height: 300px;
+			border: 1px solid #000;
+		}
+		.hehe{
+			width: 300px;
+			height: 100px;
+			border-color: red;
+		}
+	</style>
+</head>
+<body>
+	<form action="jquery1_submit" method="get" accept-charset="utf-8">
+
+	</form>
+</body>
+</html>

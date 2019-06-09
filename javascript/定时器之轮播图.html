@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			user-select: none;
+		}
+		#box{
+			width:800px;
+			height: 500px;
+			position:relative;
+			margin: 30px auto;
+			overflow: hidden;
+		}
+		.pic{
+			height: 100%;
+			position: absolute;
+			top:0;
+			left:0;
+			overflow: hidden;
+		}
+		.pic li{
+			display: inline-block;
+			float: left;
+			width: 800px;
+			height: 500px;
+		}
+		.pic li img{
+			width:100%;
+			height: 500px;
+		}
+		.pit{
+			height: 50px;
+			position:absolute;
+			bottom:10px;
+			left: 50%;
+			margin-left:-80px;
+		}
+		.pit li{
+			float: left;
+			width:30px;
+			height: 30px;
+			background-color:rgba(255,255,255,0.3);
+			margin-left: 10px;
+			text-align: center;
+			line-height: 30px;
+			color:black;
+			border-radius: 100%;
+			cursor:pointer;
+			font-weight: bolder;
+			color:white;
+		}
+		.lione{
+			background-color: red!important;
+		}
+		.left,.right{
+			opacity:0.5;
+			display:inline-block;
+			width: 100px;
+			height: 200px;
+			background-color:rgba(0,0,0,0.3);
+			position:absolute;
+			border-radius:20px;
+			text-align: center;
+			color:rgba(0,0,0,0.3);
+			font-size:5em;
+			font-weight: bold;
+			line-height: 200px;
+			font-family:"宋体";
+			cursor:pointer;
+			margin-top:-100px;
+			top:50%;
+			transition:opacity 1s;
+			
+		}
+		.left:hover,.right:hover{
+			color: white;
+			opacity:1;
+		}	
+		.left{
+			left:30px;
+		}
+		.right{
+			right:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul class="pic">
+			<li><img src="../html5/images/1.jpg" alt=""></li>
+			<li><img src="../html5/images/2.jpg" alt=""></li>
+			<li><img src="../html5/images/3.jpg" alt=""></li>
+			<li><img src="../html5/images/4.jpg" alt=""></li>
+		</ul>
+		<ul class="pit">
+
+		</ul>
+		<span class="left">&lt;</span>
+		<span class="right">&gt;</span>
+	</div>
+	<script>
+		window.onload = function(){
+
+
+			// 1.0 拿到节点
+			var box = $("#box")[0];
+			var pic = $(".pic")[0];
+			var picLi = pic.children;
+			var pitLi = $(".pit")[0].children;
+			var leftBtn =$(".left")[0];
+			var rightBtn = $(".right")[0];
+
+
+			//2.0 克隆第一个li查到最后
+			pic.append(picLi[0].cloneNode(true));
+				//2.1 动态设置pic的宽度
+				pic.style.width = picLi.offsetWidth*picLi.length;
+			//3.0 根据图片数量创建属数列
+			var leftindex = 0,rightindex = 0;
+
+			for (var i = 0; i < picLi.length-1; i++) {
+				//用闭包在里面动态获取i;
+				(function(i){
+					//3.1 创建见数列li
+					
+					var li = document.createElement("li");
+					li.innerText = i + 1;
+					$(".pit")[0].append(li);
+					//3.2 让第一个显示红色
+					pitLi[0].className = "lione";
+					//3.3 排他思想让鼠标经过他时显示背景
+					pitLi[i].onmouseover = function(){
+					for(var j = 0; j < pitLi.length; j++){
+						pitLi[j].className ="";
+					}
+					this.className = "lione";
+					//3.4 动画运动
+					constantAnimation(pic,-(picLi[0].offsetWidth*i),100);
+					leftindex = i;
+
+				}
+				})(i);
+			}
+			var timer1= null;
+
+
+			// 4.0 开启定时器
+			var timer = setInterval(autoPlay,2000);
+
+
+			// 5.0 鼠标进入box 清除定时器
+			box.onmouseover = function(){
+				clearInterval(timer);
+				leftindex = rightindex;
+			}
+
+
+			//6.0 离开时候开启
+			box.onmouseout = function(){
+				clearInterval(timer);
+				clearInterval(timer1);
+				timer = setInterval(autoPlay,2000);
+
+			}
+
+
+			//7.0 当鼠标点击做按钮的时候 
+			leftBtn.onclick = function(){
+				//清空定时器
+				clearInterval(timer);
+				timer1 = setTimeout(function(){
+				//7.1 ul动起来
+					leftindex--;
+				//7.2设置临界值
+				if (leftindex < 0) {
+					//7.2.1 让ul的无动画 的回到第一个
+					pic.style.left =-(picLi[0].offsetWidth*(picLi.length-1))+"px";
+					//7.2.2 动画从第二个直接开始
+					leftindex = 3;
+				}
+				constantAnimation(pic,-(picLi[0].offsetWidth*leftindex),100);
+				// 7.3 让原点也动起来
+				rightindex--;
+				if (rightindex < 0) {
+					rightindex = 3;
+				}
+				for(var j = 0; j < pitLi.length; j++){
+						pitLi[j].className ="";
+					}
+					pitLi[rightindex].className = "lione";
+				},10);
+			}
+			//8.0 当鼠标点击右边按钮的时候
+			rightBtn.onclick = function(){
+				//清空定时器
+				clearInterval(timer);
+				timer1 = setTimeout(function(){
+				//1.1 ul动起来
+				leftindex++;
+				//1.2设置临界值
+				if (leftindex >= picLi.length) {
+					//1.2.1 让ul的无动画 的回到第一个
+					pic.style.left = 0;
+					//1.2.2 动画从第二个直接开始
+					leftindex = 1;
+				}
+				constantAnimation(pic,-(picLi[0].offsetWidth*leftindex),100);
+				//1.3 让原点也动起来
+				rightindex++;
+				if (rightindex > pitLi.length-1) {
+					rightindex = 0;
+				}
+				for(var j = 0; j < pitLi.length; j++){
+						pitLi[j].className ="";
+					}
+					pitLi[rightindex].className = "lione";
+				},10);
+			}
+
+			/**
+			 * [autoPlay 自动轮播]
+			 */
+			function autoPlay(){
+				//1.1 ul动起来
+				leftindex++;
+				//1.2设置临界值
+				if (leftindex >= picLi.length) {
+					//1.2.1 让ul的无动画 的回到第一个
+					pic.style.left = 0;
+					//1.2.2 动画从第二个直接开始
+					leftindex = 1;
+				}
+				constantAnimation(pic,-(picLi[0].offsetWidth*leftindex),100);
+				//1.3 让原点也动起来
+				rightindex++;
+				if (rightindex > pitLi.length-1) {
+					rightindex = 0;
+				}
+				for(var j = 0; j < pitLi.length; j++){
+						pitLi[j].className ="";
+					}
+					pitLi[rightindex].className = "lione";
+			}
+			/**
+			 * [canstantAnimation 匀速动画封装]
+			 * @param  {[object]} obj      [动画的对象]
+			 * @param  {[number]} target   [目标值]
+			 * @param  {[number]} stepSize [步长]
+			 */
+			function constantAnimation(obj,target,stepSize){
+				//1.0 清除定时器
+				clearInterval(obj.timer);
+				//2.0 设置方向
+				var dir = obj.offsetLeft<target?stepSize:-stepSize;
+				//3.0 开启定时器
+				obj.timer = setInterval(function(){
+					//3.1 offsetLeft + stepSize
+					obj.style.left = obj.offsetLeft + dir + "px";
+					//3.2 超出和少于 目标点的问题
+					if (Math.abs(target-obj.offsetLeft) <=Math.abs(dir)) {
+						// 3.2.1 让超出或者减少的 都等于目标点
+						obj.style.left = target + "px";
+						clearInterval(obj.timer);
+					} 
+				},20);
+			}
+			/**
+			 * [$ 选择器]
+			 * @param  {[string]} id [description]
+			 * @return {[obj]}    [description]
+			 */
+			function $(id){
+				return typeof 
+				id === "string" ? document.querySelectorAll(id):null;
+			}
+		}
+	</script>
+</body>
+</html>

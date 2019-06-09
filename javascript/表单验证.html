@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css" media="screen">
+	input{
+		outline: none;
+		border:1px solid #ccc;
+	}
+	focus{
+		border: 1px solid skyblue;
+	}
+	span{
+		color:#ccc;
+		font-size: 13px;
+		
+	}
+	.right{
+		background:url(../html5/images/a1.png) no-repeat 5px center;
+		color: skyblue;
+		padding-left: 25px;
+		box-sizing: border-box;
+	}
+	.error{
+		background:url(../html5/images/icon-police.png) no-repeat 5px center;
+		color:red;
+		padding-left: 25px;
+		box-sizing: border-box;
+	}
+</style>
+<body>
+	<div id="box">
+		<label>
+			您的成绩：<input id="input" type="" name=""><span id="span">请输入您的成绩</span>
+		</label>
+	</div>
+</body>
+</html>
+<script>
+	window.onload=function(){
+	//封装id选择器
+	function $(id){
+		return typeof id==="string"?document.getElementById(id):rull;
+	}
+	$("input").oninput=function(){
+		console.log(132)
+		if (parseFloat(this.value)>=10&&parseFloat(this.value)<=100) {
+			$("span").innerText="输入正确";
+			$("span").setAttribute("class","right");
+			$("input").style.border="1px solid #ccc";
+			$("input").style.color="#ccc";
+
+		}else if(isNaN(this.value)){
+			$("span").innerText="不合格";
+			$("span").className="error";
+			$("input").style.border="1px solid red";
+			$("input").style.color="red";
+		}else{
+			$("span").innerText="不合格";
+			$("span").className="error";
+			$("input").style.border="1px solid red";
+			$("input").style.color="red";
+		};
+		$("input").onfocus=function(){
+			$("span").innerText="请输入内容";
+			$("span").className="";
+			$("input").style.border="1px solid darkgray";
+			$("input").style.color="";
+			$("input").value="";
+		}
+	}
+
+}
+</script>

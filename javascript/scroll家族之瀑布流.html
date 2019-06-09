@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			user-select: none;
+			list-style: none;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		#main{
+			position: relative;
+			margin: 0 auto;
+			min-width:500px
+		}
+		.box{
+			padding:10px 0 0 10px;
+			box-sizing: border-box;
+			float: left;
+			cursor:pointer;
+			transition:all 0.2s;
+		}
+		.box:hover img{
+			opacity:0.8;
+			box-shadow:0 0 10px #888888;
+			
+		}
+		.pic{
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		.pic img{
+			width: 180px;
+			vertical-align: top;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+<div id="main">
+	<div class="box"><div class="pic"><img src="../html5/images/10.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/11.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/12.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/1.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/2.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/3.png" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/4.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/15.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/16.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/17.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/5.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/6.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/7.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/8.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/9.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/10.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/11.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/12.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/13.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/14.png" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/15.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/16.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/17.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/16.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/17.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/5.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/6.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/7.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/8.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/9.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/10.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/11.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/12.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/13.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/14.png" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/15.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/16.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/17.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/16.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/17.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/5.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/6.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/7.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/8.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/9.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/10.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/11.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/12.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/13.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/14.png" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/15.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/16.jpg" alt=""></div></div>
+	<div class="box"><div class="pic"><img src="../html5/images/17.jpg" alt=""></div></div>
+</div>
+<script>
+	window.onload = function(){
+		//1.0  实现瀑布流布局
+
+		waterFall("main","box");
+
+		//2.0 伪造加载的数据
+		var imgs = [
+				{"src":"images/2.jpg"},
+				{"src":"images/4.jpg"},
+				{"src":"images/8.jpg"},
+				{"src":"images/12.jpg"},
+				{"src":"images/16.jpg"},
+				{"src":"images/17.jpg"},
+				{"src":"images/14.png"},
+				{"src":"images/13.jpg"},
+			];
+
+		//3.0 滚动屏幕动态加载图片
+			window.onscroll = function(){
+				// 3.1 延时3秒 加载
+				var timer = setTimeout(function(){
+					clearTimeout(timer);
+					if(checkWaterFall()){
+				// 3.2创建box和pic 和 img
+					for(var i= 0 ; i<imgs.length;i++){
+						var box = document.createElement("div");
+						box.className="box";
+						$("main").appendChild(box);
+						var pic = document.createElement("div");
+						box.appendChild(pic);
+						pic.className="pic";
+						var img = document.createElement("img");
+						pic.appendChild(img);
+						img.src="../html5/"+imgs[i].src;
+					}
+					// 新添加调用瀑布流
+					waterFall("main","box");
+				}
+				},3000);	
+			}
+			//4.0 当屏幕变小时候
+			window.onresize = function(){
+				//4.1 清除定时器
+				clearTimeout(timer);
+				//4.2 节流
+				var timer = setTimeout(function(){
+					console.log(1);
+					waterFall("main","box");
+				},200);	
+			}
+		
+		/**
+		 * 实现瀑布流
+		 */
+		function waterFall(parent,child){
+			//1.0 设置main的宽度
+			var boxs=$(parent).getElementsByClassName(child);
+			//1.2 获取单个box 的宽度
+			var boxWidth = boxs[0].offsetWidth;
+			//1.3 动态获取屏幕的宽度
+			var screenW =document.documentElement.clientWidth*0.9;
+			//1.4 求出列数
+			var col =parseInt(screenW/boxWidth);
+			main.style.width = col*boxWidth+"px";
+			// 1.5 求出第一行最矮的盒子和他的下标
+			var boxHeight,minIndex=0,minHeight=0,oneColBox=[];
+			for (var i = 0; i < boxs.length; i++) {
+				boxHeight = boxs[i];
+				//1.5.1 第一行
+				if (i < col) {
+					oneColBox.push(boxHeight.offsetHeight);
+					//清除style
+					boxs[i].style = "";
+				}else{//1.5.2 第二行
+					//获取最低的高度 和 index
+					minHeight=Math.min.apply(this,oneColBox);
+					minIndex = minBox(oneColBox,minHeight);
+					boxs[i].style.position="absolute";
+					boxs[i].style.left=minIndex*boxWidth+"px";
+					boxs[i].style.top=minHeight+"px";
+
+					//1.5.3 更新高度
+					oneColBox[minIndex]+=boxs[i].offsetHeight;
+
+				}
+			}
+		}
+		/**
+		 * 找出数组中相对值得 索引
+		 */
+		function minBox(arr,min){
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i]===min) {
+					return i
+				}
+			}
+		}
+		
+		/**
+		 * 检查是否需要加载图片
+		 * return false or true
+		 */
+		function checkWaterFall(){
+			var lastBoxTop,halfBoxHeight,scrollH,screenX,scrollValue
+		;
+			
+			var boxs = document.getElementsByClassName("box");
+			var lastBox = boxs[boxs.length-1];
+			for (var i = 0; i < boxs.length; i++) {
+				// 1.0 获取最后一个盒子
+				lastBox = boxs[boxs.length-1];
+				// 2.0 获取offsetTop
+				lastBoxTop = lastBox.offsetTop;
+				
+				//3.0 获取 最后一个盒子的高度的一半
+				halfBoxHeight = lastBox.offsetHeight*0.5;
+				//获取屏幕高度 
+				scrollH = document.documentElement.clientHeight||document.body.clientHeight;
+				
+				//获取屏幕偏移位置
+				scrollX = scroll().top;
+				//返回true or false
+				return scrollH+scrollX>=lastBoxTop+halfBoxHeight;
+			}
+		}
+
+		/**
+		 * 封装scrolltop 和 scrollleft
+		 * scroll().top and scroll().left
+		 */
+		function scroll(){
+			if (window.pageXoffset!==null) {
+				return {
+					top:window.pageYOffset,
+					left:window.pageXOffset,
+				}
+			}else if(document.Compat==="CSS1Compat"){
+				return {
+					top:document.documentElement.scrollTop,
+					left:document.documentElement.scrollLeft,
+				}
+			}
+			return{
+				top:document.body.scrollTop,
+				left:document.body.scrollLeft,
+			}
+		}
+		/**
+		 * 封装id选择器
+		 */
+		function $(id){
+			return typeof id === "string"?document.getElementById(id):null;
+		}
+	}
+</script>
+</body>
+</html>

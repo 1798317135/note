@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		legend{
+			text-align: center;
+			padding:0 15px;
+		}
+		fieldset{
+			text-align: center;
+			width: 250px;
+			height: 300px;
+			border:none;
+			border-top:1px solid black;
+		}
+	</style>
+</head>
+<div id="demo"></div>
+<body>
+	<script>
+		var obj ='{"aa":"heh","bb":"console.log(123)"}';
+		var arr = ["sdf","546",789];
+		var json1 = JSON.stringify(arr);
+		console.log(JSON.parse(json1));
+		/**
+		 *  for(key in obj)｛｝用来遍历对象和json
+		 *  key 是键 obj[key]是值
+		//  */
+		// for(key in aa){
+		// 	console.log(key,aa[key]);
+		// }
+		var json = JSON.parse(obj);
+		console.log(json);
+		var str = [1,2,4,8,5,88,66];
+		var val = Math.min.apply(this,str);
+		console.log(val);
+		emptyStyle()
+	</script>
+</body>
+</html>

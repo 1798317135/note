@@ -1,0 +1,102 @@
+1.0 查看系统的信息
+    uname -a
+
+
+2.0 安装依赖包
+
+    apt install numactl libaio-dev openssl
+
+3.0 创建用户和组 设置uid 666 
+    groupadd -g 666 mysql
+    useradd -u 666 -r -g mysql mysql
+
+4.0 下载对应版本 二级制的安装包
+    wget -c https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.13-linux-glibc2.12-i686.tar.xz
+
+5.0 解压下载的安装包
+    tar -vxf xxx
+
+6.0 删除系统默认的mysql 用户和组
+    userdel mysql
+
+7.0 修改权限
+    chown -R mysql:mysql mysql-8.0.15
+    chmod -R 750 mysql-8.0.15
+
+8.0 移动到 /usr/local/ 目录下 改名 mysql
+    mv mysql-8.0.11-linux-glibc2.12-x86_64 /usr/local/mysql
+
+9.0 切换到 安装目录下
+    cd /usr/local/mysql
+
+10 创建 参数文件
+    touch /etc/my.cnf
+
+11 在参数文件中定义 基本的路径和 端口号
+[mysqld]
+#数据文件位置
+datadir         =/var/lib/mysql/
+#软件的位置
+basedir         =/usr/local/mysql
+#端口号
+port            =3306
+socket          =/var/lib/mysql/mysql.sock
+pid_file        =/var/lib/mysql/mysql.pid
+#错误日志的位置
+log-error       =/var/lib/mysql/error.log
+
+12 创建数据文件
+    mkdir /var/lib/mysql
+
+13 给数据文件设置权限
+    chown -R mysql:mysql /var/lib/mysql/
+    chmod -R 750 /var/lib/mysql/
+
+
+14 初始化数据库 并且记录自动生成的密码
+    bin/mysqld --initialize --user=mysql
+
+15  安装SSL服务
+    
+    bin/mysql_ssl_rsa_setup
+
+16 .开启服务
+    bin/mysqld_safe --user=mysql &
+
+17  测试是否启动
+    bin/mysqladmin version
+
+18  设置开机自动启动
+    sudo cp support-files/mysql.server /etc/init.d/mysql.server
+
+19  重启服务
+    bin/mysql_safe --user=mysql & 
+
+12  关闭服务
+    bin/mysqladmin -u root shutdown
+
+21 bin/mysql -uroot -p
+######################## 修改密码  #######################
+1.0 进入到mysql
+
+    alter user root@localhost identified by '123456789'
+
+######################## 添加环境变量 #####################
+1.0 进入/usr/local/mysql/bin
+    cd /usr/local/mysql/bin
+2.0 执行vim ~/.bash_profile
+3.0 在该文件中添加mysql/bin的目录 并保存退出
+    PATH=$PATH:/usr/local/mysql/bin
+4.0 在命令行执行
+    source ~/.bash_profile
+######################## 卸载  ############################
+1.0 删除安装目录
+    rm -rf /usr/local/mysql/
+2.0 删除数据目录
+    rmdir --ignore-fail-on-non-empty /var/lib/mysql/
+    rm -r /var/lib/mysql
+3.0 删除用户
+    userdel mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'a123456';
+

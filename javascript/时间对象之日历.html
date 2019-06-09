@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+		}
+		#box{
+			width: 300px;
+			height: 350px;
+			background-color:orangered;
+			margin:100px auto;
+			padding:30px;
+			box-sizing: border-box;
+		}
+		time{
+			color:#ccc;
+			font-size: 20px;
+			text-align: center;
+		}
+		.bottom{
+			margin:0 auto;
+			height:230px;
+			margin-top: 30px;
+			color: white;
+			font-size:6em;
+			font-weight:bolder;
+			text-align: center;
+			background-color: orange;
+			line-height: 230px;		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<time></time>
+		<div class="bottom"></div>
+	</div>
+	<script>
+		window.onload=function(){
+			//初始化Date();
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth()+1;
+			var week = date.getDay();
+			var date = date.getDate();
+			var weeks = ["日","一","二","三","四","五","六"];
+			//获取时间标签
+			var time = document.querySelector("time");
+			time.innerText=year+"年"+month+"月"+date+"日 星期"+weeks[week];
+			var day = document.querySelector(".bottom");
+			day.innerText = date;
+		}
+	</script>
+</body>
+</html>

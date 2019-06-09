@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		div{
+			width:100px;
+			height:100px;
+			background-color:red;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<button>开始动画</button>
+	<div>
+		
+	</div>
+	<script>
+		window.onload=function(){
+			//绑定事件 
+			$("button").onclick=function(){
+				slowAnimetion(0,800,0.1);
+				return false;
+			};
+
+			//封装solwAnimetion()缓动动画；
+			function slowAnimetion(start,end,solw){
+				var timer = null;
+				clearInterval(timer);
+				//开启定时器
+				timer = setInterval(function(){
+					/*缓动公式
+					起始值 +=（结束值 - 起始值） * 缓动系数；*/
+					start += (end - start) * solw;
+
+					//判断
+					if (Math.round(start)>=end) {
+						start  = 0;
+						clearInterval(timer);
+					};
+
+					//带入
+					$("div").style.marginLeft = start + "px";
+				},100);
+			};
+			function $(id){
+				return typeof id === "string"?document.querySelector(id):null;
+			}
+		}
+	</script>
+</body>
+</html>

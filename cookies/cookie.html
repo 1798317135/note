@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//用expires设置cookie的生命周期 默认是一次回话
+		var d = new Date();
+		d.setDate(d.getDate()+1);
+		document.cookie = "cookie1=value;expires="+d.toGMTString()+";";
+		var x = document.cookie;
+		console.log(x);
+		//cookie 添加数据不能一次性的添加 要一个一个的添加
+		document.cookie = "name = yang;";
+		document.cookie = "age = 18;";
+		//cookie 保存的条数在20-50条以内 一般不要超过20条 大小在4kb左右
+		//cookie 的作用范围默保存在同一个浏览器的同一个路径下 这只path=/;上级目录和下级目录都可以访问这个cookie，如果想让网站的所有二级域名访问跟文件里面的cookie 需要添加domain =baidu.com;指定根域名
+		function addCookie(key,value,day,path,domain){
+			var index = window.location.pathname.lastIndexOf("/");
+			var currentPath = window.location.pathname.slice(0,index);
+			path = path || currentPath;
+			console.log(path);
+			domain = domain || window.location.host;
+			if (!day) {
+				document.cookie = key+"="+value+";path="+path+";domain:"+domain+";";
+				
+			}else{
+				var d = new Date();
+				d.setDate(d.getDate()+day);
+				document.cookie = key+"="+value+";path="+path+";domain:"+domain+";expires="+d.toGMTString()+";";
+			}
+		}
+		function getCookie(key){
+			var name = key+"=";
+			var c = document.cookie.split(";");
+			for (var i = 0; i < c.length; i++) {
+				var ct = c[i].trim();
+				if (ct.indexOf(name)==0){
+					return ct.slice(name.length,ct.length);
+				}
+			}
+			return "";
+		}
+		function deCookie(key,path){
+			addCookie(key,getCookie(key),-1,path);
+		}
+		addCookie("aa","bb");
+		console.log(getCookie("aa"));
+		deCookie("aa","/");
+		window.location.hash = 3;
+		console.log(window.location.hash.slice(1));
+	</script>
+</body>
+</html>

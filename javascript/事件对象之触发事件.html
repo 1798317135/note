@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">点我1</button>
+    <button id="btn2">点我2</button>
+    <script>
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        btn1.onclick = function(){
+            alert(this.innerText);
+        }
+        btn2.onclick = function(){
+            alert(this.innerText);
+        }
+        //click()模拟点击
+        btn1.click();
+        //onclick()调用这个对象的点击事件；
+        btn2.onclick();
+    </script>
+</body>
+</html>

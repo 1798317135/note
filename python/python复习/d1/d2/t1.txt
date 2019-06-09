@@ -1,0 +1,26 @@
+每次访问网站时，都会留下曲目。其他人可以访问的曲目。如果你不喜欢这个想法，找出哪些软件可以帮助你掩盖它们。
+反轨道
+Anti Tracks是一个完整的解决方案，可以保护您的隐私并提高您的PC性能。只需单击一下，Anti Tracks就可以安全地删除存储在计算机上许多隐藏文件中的Internet轨道，计算机活动和程序历史信息.Anti Tracks支持Internet Explorer，AOL，Netscape / Mozilla和Opera浏览器。它还包括超过85个免费插件，以扩展擦除功能，以支持流行的程序，如ACDSee，Acrobat Reader，KaZaA，PowerDVD，WinZip，iMesh，Winamp等等。此外，您可以在特定的时间间隔或Windows静态/关闭时轻松安排擦除任务。确保最大程度的隐私保护Anti Tracks实施美国国防部DOD 5220.22-M，Gutmann和NSA安全擦除方法，使任何已擦除的文件无法恢复即使使用高级恢复工具。
+免费下载：http：//www.deprice.com/antitracks.htm
+East-Tec橡皮擦
+East-Tec Eraser超越美国国防部的标准，可永久删除数字信息，并可轻松从计算机中删除每一条敏感数据。
+完全销毁在您不知情或未经批准的情况下存储的信息：Internet历史记录，来自Internet上访问的站点的Web页面和图片，不需要的cookie，聊天室对话，已删除的电子邮件，临时文件，Windows交换文件，回收站，之前已删除文件，有价值的公司商业秘密，商业计划，个人文件，照片或机密信件等.East-Tec Eraser 2005为Peer2Peer应用程序提供对流行浏览器（Internet Explorer，Netscape Navigator，America Online，MSN Explorer，Opera）的全面支持（Kazaa，Kazaa Lite，iMesh，Napster，Morpheus，Direct Connect，Limewire，Shareaza等），以及其他流行程序，如Windows Media Player，RealPlayer，Yahoo Messenger，ICQ等。橡皮擦具有直观的界面和向导，可指导您完成保护隐私和敏感信息所需的所有必要步骤。其他功能包括支持自定义隐私需求，用户定义的擦除方法，命令行参数，与Windows资源管理器的集成，以及密码保护。
+免费下载：http：//www.deprice.com/eastteceraserstandard.htm
+Ghostsurf白金
+GhostSurf Platinum通过提供匿名的加密互联网连接确保您的在线安全，GhostSurf可以阻止间谍软件，消除广告并删除您的曲目。GhostSurf可让您实时自定义隐私级别，以满足您的冲浪需求。通过各种选项，您可以阻止个人信息，屏蔽IP地址，通过匿名集线器路由数据，甚至加密Internet连接。GhostSurf的隐私控制中心允许您查看和阻止计算机通过Internet发出的每个数据，甚至阻止您的Internet服务提供商（ISP）在您上创建配置文件。
+免费下载：http：//www.deprice.com/ghostsurfplatinum.htm
+Cyber​​Scrub Pro
+敏感数据很容易落入坏人之手。而且由于Windows无法删除恢复之外的信息，因此您将面临风险！
+密码，财务文件，甚至那些“关于昨晚”的电子邮件对于IT专业人员，计算机技术人员或黑客来说都是公平的游戏。
+Cyber​​Scrub允许您使用远远超过美国国防部标准删除文件（DOD 5220.22）的方法清除，擦除和删除数据。
+Cyber​​Scrub删除：
+*选定的文件/文件夹，无法恢复
+* 饼干
+*缓存（临时Internet文件）
+* Peer2Peer活动的所有痕迹（16个热门应用程序）
+*网站历史
+*聊天室对话，即时消息
+*图片查看
+*电子邮件和“以前删除的文件”
+*回收站，最近的文档
+*交换和包含敏感数据的其他“锁定”文件

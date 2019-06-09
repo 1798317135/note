@@ -1,0 +1,32 @@
+反向代理的应用场景
+
+1.0 堡垒机
+    只有一台服务器做为堡垒机
+    外部的请求通过堡垒机 然后在转接到其他服务器
+
+2.0 均衡负载
+    通过一个均很负载机来分配到其他服务器任务
+
+3.0 数据服务器
+    他可以把静态的数据都缓存
+    如果有动态数据 在去请求业务服务器 处理
+
+反向代理设置
+location / {
+    proxy_pass  http://118.190.209.153;
+    #proxy_pass  http://171.8.242.186;
+    #Proxy Settings
+    proxy_redirect     off;
+    proxy_set_header   Host             $host;
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+    proxy_max_temp_file_size 0;
+    proxy_connect_timeout      90;
+    proxy_send_timeout         90;
+    proxy_read_timeout         90;
+    proxy_buffer_size          4k;
+    proxy_buffers              4 32k;
+    proxy_busy_buffers_size    64k;
+    proxy_temp_file_write_size 64k;
+}

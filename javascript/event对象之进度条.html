@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+			user-select: none;
+			font-size:30px;
+			font-family: "楷体";
+			text-align: center;
+			border-radius: 10px;
+			border: none;
+		}
+		#box{
+			width: 850px;
+			height: 50px;
+			margin: 200px auto;
+			position: relative;
+			
+		}
+		#progress{
+			height: 100%;
+			width: 800px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color:#ccc;
+		}
+		#btn{
+			width: 40px;
+			height: 80px;
+			background-color:#686868;
+			cursor:pointer;
+			position:absolute;
+			top:-15px;
+			left: 0;
+			transition: active 0.2s;
+		}
+		#btn:active{
+			background-color: black;
+		}
+		#progress_bar{
+			height: 100%;
+			width: 0%;
+			background-color:orangered;
+			border-top-right-radius:0px;
+			border-bottom-right-radius:0px;
+		}
+		#cent{
+			width: 50px;
+			height: 100%;
+			position:absolute;
+			right:0;
+			top: 0;
+			line-height:50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="progress">
+			<div id="progress_bar">
+				
+			</div>
+			<div id="btn">
+				
+			</div>
+		</div>
+		<div id="cent">0%</div>
+	</div>
+	<script>
+		window.onload = function(){
+			//1.0 获取标签
+
+			var box = $("box");
+			var progress = $("progress");
+			var progress_bar = $("progress_bar");
+			var btn = $("btn");
+			var cent = $("cent");
+
+			//2.0 监听鼠标按下 
+			btn.onmousedown = function(event){
+				var event = event || window.event;
+				var offsetLeft = event.clientX-btn.offsetLeft;
+				//2.1 监听鼠标在进度条上的移动
+				document.onmousemove = function(event){
+					var e = event||window.event;
+					var x = e.clientX-offsetLeft;
+
+					//2.2 让按钮动起来 
+					if (x <=0 ) {
+						x =0;
+					}else if(x>=760){
+						x =760;
+					}
+					btn.style.left = x +"px";
+					progress_bar.style.width=x+"px";
+					// 算出填色和按钮一共占的百分比
+					var c =parseInt(x/(progress.offsetWidth-btn.offsetWidth)*100);
+					cent.innerText=c+"%";
+					return false;
+				}
+				
+				//2.2 鼠标弹起的时候停止
+				document.onmouseup = function(){
+					this.onmousemove=null;	
+				}
+			}
+
+				//3.0 监听progress的点击事件 
+
+				progress.onclick = function(event){
+					var event = event||window.event;
+					//3.1 算出鼠标点击的位置
+					var x = event.clientX-progress.offsetParent.offsetLeft;
+					if (x <=0 ) {
+						x =0;
+					}else if(x>=760){
+						x =760;
+					}
+					btn.style.left = x +"px";
+					progress_bar.style.width=x+"px";
+					// 算出填色和按钮一共占的百分比
+					var c = parseInt(x/(progress.offsetWidth-btn.offsetWidth)*100);
+
+					cent.innerText=c+"%";
+				}
+
+				//选择器
+			function $(id){
+				return typeof id === "string"?document.getElementById(id):null;
+			}
+		}
+	</script>
+</body>
+</html>

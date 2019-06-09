@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			border:none;
+			user-select: none;
+		}
+		main{
+			width: 70%;
+			height: 4000px;
+			margin: 0 auto;
+		}
+		main img{
+			width: 100%;
+			height: 100%;
+
+		}
+		figure{
+			width: 30px;
+			height: 100px;
+			position: fixed;
+			right:20px;
+			bottom: 100px;
+			cursor:pointer;
+			background-color:rgba(0,0,0,0.2);
+			border-radius: 5px;
+			display: none;
+			transition:all 0.5s;
+		}
+		figure figcaption{
+			width: 100%;
+			text-align: center;
+		}
+		figure img{
+			width: 100%;
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<img src="../html5/images/13.jpg" alt="">
+	</main>
+	<figure>
+		<figcaption>回到顶部</figcaption>
+		<img src="../html5/images/timg.jpg" alt="回到顶部">
+	</figure>
+	<script>
+		window.onload = function(){
+			//当屏幕发生偏移的时候
+			window.onscroll = function(){
+				//1.0 当偏移值 大于屏幕高度的时候显示
+				var clientY = document.documentElement.clientHeight||document.body.clientHeight;
+					clearInterval(timer);
+				var scrollY = scroll().top;
+				var start = scrollY,end = 0,timer = null,begin=0,over=0;
+				if (scrollY>clientY) {
+					$("figure").style.display="block";
+				}else{
+					$("figure").style.display="";
+				}
+
+				//2.0 监听点击	
+				$("figure").onclick=function(){
+					//2.1 清除定时器
+					clearInterval(timer);
+					//2.2 缓动动画
+					timer = setInterval(function(){
+						start +=  (end - start)*0.3;
+						//2.3 设置滚动到什么高度
+						window.scrollTo(0,start);
+						//2.4 如果滚动到指定高度后清除定时器
+						if (parseInt(start)===end) {
+							clearInterval(timer)
+						}
+					},20);
+				}
+			}
+			function scroll(){
+				if (window.pageXOffset!==null) {
+					return {
+						top:window.pageYOffset,
+						left:window.pageXOffset,
+					}
+				}else if(document.Compat==="CSS1Compat"){
+					return {
+						top:document.documentElement.scrollTop,
+						left:document.documentElement.scrollLeft,
+					}
+				}
+				return {
+					top:document.body.scrollTop,
+					left:document.body.scrollLeft,
+				}
+			}
+			function $(id){
+				return typeof id === "string"?document.querySelector(id):null;
+			}
+		}
+	</script>
+</body>
+</html>

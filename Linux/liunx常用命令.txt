@@ -1,0 +1,21 @@
+----------------------------切换源
+
+    1.0 sudo vim /etc/apt/sources.list
+    2.0 进入vim 后 按e进入全能模式
+    3.0 i 开始编写
+    4.0 清空内容
+    5.0 写入
+        deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse  
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse  
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse  
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse  
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse  
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse  
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse  
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse  
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse  
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse 
+    6.0 esc 后 an shift + z 保存退出
+    7.0 sudo apt-get update 更新
+    
+

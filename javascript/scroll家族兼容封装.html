@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		body{
+			width: 3000px;
+			height: 3000px;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		/**
+		 * @return {scrollTop and scrollLeft}
+		 * 用法 scroll().top  and  scroll().left
+		 * 返回 滚动条距离头部和 左侧的距离
+		 */
+		function scroll(){
+			if (window.pageXoffset!==null) {
+				return {
+					top:window.pageYOffset,
+					left:window.pageXOffset,
+				}
+			}else if(document.Compat==="CSS1Compat"){
+				return {
+					top:document.documentElement.scrollTop,
+					left:document.documentElement.scrollLeft,
+				}
+			}
+			return{
+				top:document.body.scrollTop,
+				left:document.body.scrollLeft,
+			}
+		}
+		window.onscroll = function(){
+			console.log(scroll().top);
+			console.log(scroll().left);
+		}
+
+	</script>
+</body>
+</html>

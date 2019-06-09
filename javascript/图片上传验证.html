@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="file.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+		<input type="file" name="imgupload">
+		<br>
+	</form>
+	<script src="myFun.js"></script>
+	<script>
+		window.onload = function(){
+			var input = document.getElementsByTagName("input")[0];
+			var from = document.querySelector("form");
+			//监听intput变化
+			input.onchange = function(){
+				var val = input.value;
+				var index = val.lastIndexOf(".");
+				var filename = val.substr(index+1).toLowerCase();
+				var data = new FormData;
+				if (filename === "img"||filename === "jpeg"||filename ==="jpg"||filename==="png") {
+					alert("可以上传");
+					sub.disabled = false;
+					ajax({
+						type:"post",
+						url:"file.php",
+						data:data,
+						timeout:3000,
+						success:function(xhr){console.log(xhr.responseText)},
+						error:function(xhr){alert("请求失败")}
+					});
+				}else{
+					alert("格式错误");
+					this.value ="";
+					sub.disabled = true;
+				}
+
+			}
+		}
+	</script>
+</body>
+</html>

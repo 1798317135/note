@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button>发送请求</button>
+	<script>
+		//1.0 ajax是前端技术
+		//2.0 ajax技术不用重新加载页面就可以获取和提交数据
+		window.onload = function (argument) {
+			var  btn = document.querySelector("button");
+			btn.onclick = function() {
+				//1.0 创建一个XMLHttpRequest异步对象兼容模式。
+				var xmlhttp;
+				if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+  					xmlhttp=new XMLHttpRequest();
+  				}else{// code for IE6, IE5
+  					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  				}
+				//2.0 设置请求方式和请求地址
+				/**
+				 * 一个参数是请求方式
+				 * 第二个参数 请求的地址，如果为空的话就返回自己的的html代码
+				 * 的三个参数 true(异步)false（同步）
+				 */
+				xmlhttp.open("GET","?t"+(new Date().getTime()),true);
+				//3.0 发送请求
+				xmlhttp.send();
+				//4.0 监听状态变化
+					/**
+					 * 状态码
+					 * 0:请求未初始化
+					 * 1:服务器已经建立连接
+					 * 2:请求已经接收
+					 * 3:请求处理中
+					 * 4:请求已经完成，且相应已经就绪
+					 */
+				xmlhttp.onreadystatechange = function(){
+				//5.0 接收返回的数据
+					if (xmlhttp.readyState === 4 ){
+					//代表请求已经并且服务器的返回状态码大于等200小于300还有个特殊的304代表返回的是本地的缓存数据也代表成功；
+						if (xmlhttp.status>=200 && xmlhttp.status < 300 || xmlhttp.status === 304) {
+							console.log("接收返回的数据");
+							//xmlhttp.reponeText //获取返回的数据
+							//xmlhtml.responseXML//获取到返回的xml
+
+						}else{
+							console.log("没有接收到返回数据");
+						}
+					}
+				}
+				
+			}
+			
+		}
+	</script>
+</body>
+</html>

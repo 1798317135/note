@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css" media="screen">
+	*{
+		margin: 0;
+		padding: 0;
+		user-select: none;
+		list-style: none;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	aside{
+		width: 100px;
+		height: 250px;
+		position:fixed;
+		right: 5px;
+		top:50%;
+		margin-top: -125px;
+	}
+	aside span{
+		display: inline-block;
+		width: 100%;
+		height: 50px;
+		text-align:center;
+		line-height: 50px;
+		cursor:pointer;
+		color:black;
+		background-color:orangered;
+	}
+	.box{
+		width: 100%;
+		height:100%;
+		font-size:2em;
+		text-align:center;
+	}
+	.bgc{
+		background-color:#ccc;
+		color:red;
+	}
+</style>
+<body>
+	<aside>
+		<span class="bgc">母婴</span>
+		<span>玩具</span>
+		<span>鞋包</span>
+		<span>服饰</span>
+		<span>食品</span>
+	</aside>
+	<div class="box">母婴</div>
+	<div class="box">玩具</div>
+	<div class="box">鞋包</div>
+	<div class="box">服饰</div>
+	<div class="box">食品</div>4	<script src="myFun函数库.js"></script>
+	<script>
+		window.onload = function(){
+			var span = $("span");
+			var box = $(".box");
+			var flag = false;
+			//1.0 给每个box上色
+			var arrColor = ["red","purple","pink","yellow","skyblue"];
+			for (var i = 0; i < arrColor.length; i++) {
+				box[i].style.backgroundColor=arrColor[i];
+			}
+			//2.0 监听gps，通过排他思想添加类名
+			for (var i = 0; i < span.length; i++) {
+				(function(index){
+					span[i].onmousedown = function(){
+					flag = true;
+					//2.1 排他思想
+					for (var j=0; j < span.length; j++) {
+						span[j].className = "";
+					}
+					this.className = "bgc";
+					//2.3 获取对应模块头部偏离值
+					var boxTop= box[index].offsetTop;
+					//2.4 给滚动条的滚动添加缓动动画
+					slowAnimation(document.documentElement,{"scrollTop":boxTop},0.1,function(){
+						flag = false;
+					});
+				}
+				})(i);
+			}
+			//3.0 监听屏幕滚动，给gps添加类名
+			var client_h = client().height,timer = null,index = 0;
+			window.onscroll = function(){
+				//3.1 判断是否是手动滚动否则不执行下面代码
+				if (!flag) {
+					//3.2 节流
+					clearTimeout(timer);
+					timer = setTimeout(function(){
+						console.log(1111);
+						index = Math.ceil(scroll().top/client_h);
+						for (var i = 0; i < span.length; i++) {
+							span[i].className = "";
+						}
+						span[index].className = "bgc";
+					},100)
+				}
+			}
+		}
+	</script>
+</body>
+</html>

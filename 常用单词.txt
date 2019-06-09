@@ -1,0 +1,52 @@
+pinterest --- 瀑布流
+slowAnimation -- 缓动动画
+constantAnimation -- 匀速动画
+init -- 初始化
+box -- 盒子
+important -- 重要
+prototype -- 原型
+action -- 行动活动
+prev -- 上一个
+next -- 下一个
+flag -- 标记旗帜
+current -- 当前的
+sibling --- 兄弟姊妹
+Expression --表达
+regular -- 有规律的
+request -- 请求头
+reste --重置清空
+repeat -- 重复反复
+replace--替换
+response--响应
+reslute -- 结果
+submit -- 提交
+linear -- 线性
+infinite -- 无限大
+attachment--附着依恋
+inherit -- 继承
+gradients -- 斜坡，倾斜度，渐变
+round -- 圆形
+cube -- 方形
+triangle -- 三角形
+transparent--透明的
+reduce -- 缩小
+through --穿过
+iterate --迭代
+succeed --成功
+expires- 有效期
+collection - 采集
+iterable -- 可迭代的
+dict -- 字典
+frozen -- 冻结，冷冻
+support -- 支持
+element -- 元素，要素
+does not -- 不，没有
+argument(args) -- 参数
+invalid -- 无效的
+missing -- 缺少
+syntax -- 语法
+variable -- 变量
+statement -- 声明
+No such -- 没有这样的
+traceback -- 追踪
+tool -- 工具

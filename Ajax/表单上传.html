@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 500px;
+            height: 600px;
+            margin:100px auto;
+            padding: 30px;
+            position:relative;
+            text-align: center;
+        }
+        .tit{
+            width: 100%;
+            height: 50px;
+            background-color:#ccc;
+            text-align: center;
+            line-height:50px;
+        }
+        .img{
+            width:500px;
+            height: 500px;
+            position: absolute;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        button{
+            width: 50px;
+            height: 50px;
+            background-color:skyblue;
+            margin:550px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="tit">标题</div>
+        <div class="img"><img src="img/主图1.jpg" alt=""></div>
+        <button>第一</button>
+        <button>第二</button>
+        <button>第三</button>
+    </div>
+    <script src="myFun.js"></script>
+    <script>
+        window.onload = function(){
+            var tit = document.querySelector(".tit");
+            var img = document.querySelector("img");
+            var btn = document.querySelectorAll("button");
+            for (var i = 0; i < btn.length; i++) {
+                var current = btn[i];
+                current.onclick = function(){
+                    if (this === btn[0]) {
+                        ajax({
+                            type:"POST",
+                            url:"xml.php",
+                            success:function(xhr){
+                                var data = xhr.responseXML;
+                                tit.innerText = data.querySelector("one tit").innerHTML;
+                                img.src = data.querySelector("one file").innerHTML;
+                            },
+                            error:function(xhr){
+                                conosle.log(xml.status)
+                            }
+                        });
+                    }else if(this===btn[1]){
+                        ajax({
+                            type:"POST",
+                            url:"xml.php",
+                            success:function(xhr){
+                                var data = xhr.responseXML;
+                                tit.innerText = data.querySelector("two tit").innerHTML;
+                                img.src = data.querySelector("two file").innerHTML;
+                            },
+                            error:function(xhr){
+                                conosle.log(xml.status)
+                            }
+                        });
+                    }else{
+                        ajax({
+                            type:"POST",
+                            url:"xml.php",
+                            success:function(xhr){
+                                var data = xhr.responseXML;
+                                tit.innerText = data.querySelector("three tit").innerHTML;
+                                img.src = data.querySelector("three file").innerHTML;
+                            },
+                            error:function(xhr){
+                                conosle.log(xml.status)
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

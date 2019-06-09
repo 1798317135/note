@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+    /*body{
+        height: 3000px;
+    }
+    #pro{
+        width: 600px;
+        height: 30px;
+        margin:50px auto;
+        line-height: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+    #pro_bar{
+        width: 550px;
+        height: 100%;
+        background-color:#ccc;
+        border-radius:8px;
+        position: relative;
+    
+    }
+    #pro_bar_fg{
+        width: 0px;
+        height: 100%;
+        border-radius: 8px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background-color:orangered;
+    }
+    #pro_bar span{
+        display: inline-block;
+        width: 30px;
+        height: 50px;
+        background-color:black;
+        position: absolute;
+        left:0px;
+        top:-50%;
+        margin-top:5px;
+        border-radius:10px;
+        cursor:pointer;
+
+    }
+    #pro_value{ 
+        user-select: none; 
+    }*/
+    #main .imgs{
+        width: 200px;
+        height:0px;
+        float: left;
+        margin:10px 10px;
+        background-color: red;
+    }
+</style>
+<body>
+    <div id="main">
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        
+    </div>
+    <script>
+        window.onload = function(){
+            // 获取每个盒子
+            var main = document.getElementById("main");
+            var boxs = main.children;
+
+            // 随机设置每个盒子的高度
+            var rHeight,img;
+            for(var i = 0, length1 = boxs.length; i < length1; i++){
+                rHeight = parseInt(Math.random()*70+50)+"px";
+                img = boxs[i]
+                img.style.height = rHeight
+            }
+
+            //1.2 获取单个box 的宽度
+            var boxWidth = boxs[0].offsetWidth;
+            //1.3 动态获取屏幕的宽度
+            var screenW =document.documentElement.clientWidth*0.9;
+            //1.4 求出列数
+            var col =parseInt(screenW/boxWidth);
+            main.style.width = col*boxWidth+"px";
+            // 1.5 求出第一行最矮的盒子和他的下标
+            var boxHeight,minIndex=0,minHeight=0,oneColBox=[];
+            for (var i = 0; i < boxs.length; i++) {
+                boxHeight = boxs[i];
+                //1.5.1 第一行
+                if (i < col) {
+                    oneColBox.push(boxHeight.offsetHeight);
+                    //清除style
+                    boxs[i].style = "";
+                }else{//1.5.2 第二行
+                    //获取最低的高度 和 index
+                    minHeight=Math.min.apply(this,oneColBox);
+                    minIndex = minBox(oneColBox,minHeight);
+                    boxs[i].style.position="absolute";
+                    boxs[i].style.left=minIndex*boxWidth+"px";
+                    boxs[i].style.top=minHeight+"px";
+
+                    //1.5.3 更新高度
+                    oneColBox[minIndex]+=boxs[i].offsetHeight;
+
+                }
+            }
+            function minBox(arr,min){
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i]===min) {
+                        return i
+                    }
+                }
+            }
+        }
+    </script>
+<!--     <div id="pro">
+        <div id="pro_bar">
+            <div id="pro_bar_fg">
+                
+            </div>
+            <span></span>
+        </div>
+        <div id="pro_value">
+            0%
+        </div>
+    </div>
+    <script type="text/html">
+        window.onload = function(){
+            // 获取需要的元素
+            var pro = $("pro");
+            var pro_bar = $("pro_bar");
+            var pro_bar_fg = $("pro_bar_fg");
+            var pro_but = pro_bar.getElementsByTagName("span")[0]
+            var pro_value = $("pro_value")
+
+            // 绑定点下事件
+            pro_but.onmousedown = function(event){
+                var e = event || window.event;
+                var offsetLeft = e.clientX - this.offsetLeft;
+                // 监听鼠标的移动
+                document.onmousemove = function(event){
+                    var e = event || window.event;
+                    var x = e.clientX - offsetLeft;
+                    if (x < 0) {
+                        x = 0;
+                    }else if(x>pro_bar.offsetWidth - pro_but.offsetWidth){
+                        x = pro_bar.offsetWidth - pro_but.offsetWidth
+                    }
+                    pro_but.style.left = x + "px";
+                    pro_bar_fg.style.width = x + "px";
+                    // var ps = pro_bar.offsetWidth/x;
+                    var ps = parseInt(x/(pro_bar.offsetWidth - pro_but.offsetWidth)*100)
+                    pro_value.innerText = ps + "%";
+                    return false
+                }
+
+                document.onmouseup = function(){
+                    this.onmousemove = null;
+                }
+
+            }
+
+
+            // console.log(pro_but)
+            function $(id){
+                return typeof id === "string"?document.getElementById(id):null;
+            }
+
+        }
+    </script>
+     -->
+<script>
+    // function scroll(){
+    //     if (window.pageXOffset!==null) {
+    //         return{
+    //             top:window.pageYOffset,
+    //             left:window.pageXOffset,
+    //         }
+    //     }else if(document.CompatMode === "CSS1Compat"){
+    //         return {
+    //             top:document.documentElement.scrollTop,
+    //             left:document.documentElement.scrollLeft,
+    //         }
+    //     }
+    //     return{
+    //         top:document.body.scrollTop,
+    //         left:document.body.scrollLeft,
+    //     }
+    // }
+    // window.onscroll = function(event){
+    //     console.log(scroll().top)
+    // }
+</script>
+</body>
+</html>
+<script>
+    
+</script>

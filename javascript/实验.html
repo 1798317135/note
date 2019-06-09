@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		window.onload = function(){
+			function Dog(option){
+				this._init(option);
+			}
+			Dog.prototype={
+				_init:function(op){
+					this.name=op.name;
+				}
+			};
+			Dog.prototype.name="aa";
+			console.log(Dog.prototype.name);
+			var dog = new Dog({});
+			console.log(Dog._proto_);
+		}
+	</script>
+</body>
+</html>

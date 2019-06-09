@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>形变中心点</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;padding: 0;
+		}
+		ul{
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+			border: 1px solid #ccc;
+			position: relative;
+			top: 80px;
+			perspective: 20px;
+		}
+		ul li{
+			list-style-type: none;
+			margin: 0 auto;
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			transform-origin:(0px,0px);
+			perspective: 100px;
+
+		}
+		ul li:nth-of-type(1){
+			background-color: red;
+			transform:rotateX(30deg);
+			transform-origin:0px 0px;
+			
+		}
+		ul li:nth-of-type(2){
+			background-color: pink;
+			transform: rotateY(50deg);
+			transform-origin:right top;
+		}
+		ul li:last-of-type{
+			background-color: blue;
+			transform: rotateZ(70deg);
+			transform-origin:100% 100%;
+		}
+
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

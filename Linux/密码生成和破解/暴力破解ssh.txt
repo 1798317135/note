@@ -1,0 +1,35 @@
+Hydra 软件
+
+Options:
+-R                 继续从上一次进度接着破解
+-I                  忽略已破解的文件进行破解
+-S                 采用SSL链接
+-s PORT        指定非默认服务端口
+-l LOGIN       指定用户名破解
+-L FILE           指定用户名字典
+-p PASS         指定密码破解
+-P FILE           指定密码字典
+-y                  爆破中不使用符号
+-e nsr            "n"尝试空密码, "s"尝试指定密码，"r"反向登录
+-C FILE          使用冒号分割格式，例如"登录名:密码"来代替-L/-P参数
+-M FILE         每行一条攻击的服务器列表, ':'指定端口
+-o FILE           指定结果输出文件
+-b FORMAT   为-o FILE输出文件指定输出格式:text(默认), json, jsonv1
+-f / -F             找到登录名和密码时停止破解
+-t TASKS        设置运行的线程数，默认是16
+-w / -W TIME 设置最大超时的时间，单位秒，默认是30s
+-c TIME          每次破解等待所有线程的时间
+-4 / -6            使用IPv4(默认)或IPv6
+-v / -V            显示详细过程
+-q                   不打印连接失败的信息
+-U                  服务模块详细使用方法
+-h                   更多命令行参数介绍
+server             目标DNS、IP地址或一个网段
+service            要破解的服务名
+OPT                一些服务模块的可选参数
+支持的协议: adam6500、asterisk、cisco、cisco-enable、cvs、firebird、ftp、ftps、http[s]-{head|get|post}、http[s]-{get|post}-form、http-proxy、http-proxy-urlenum、icq、imap[s]、irc、ldap2[s]、ldap3[-{cram|digest}md5][s]、mssql、mysql、nntp、oracle-listener、oracle-sid、pcanywhere、pcnfs、pop3[s]、postgres、radmin2、rdp、redis、rexec、rlogin、rpcap、rsh、rtsp、s7-300、sip、smb、smtp[s]、smtp-enum、snmp、socks5、ssh、sshkey、svn、teamspeak、telnet[s]、vmauthd、vnc、xmpp
+
+作者：TryHard3r
+链接：https://www.jianshu.com/p/cc9a51ff3530
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。

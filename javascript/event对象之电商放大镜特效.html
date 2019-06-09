@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			user-select: none;
+		}
+		#box{
+			width: 600px;
+			height: 600px;
+			position:relative;
+			margin:30px;
+		}
+		#top{
+			width: 100%;
+			height: 400px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		#top span{
+			display: inline-block;
+			width: 160px;
+			height: 160px;
+			opacity: 0.3;
+			background-color:yellow;
+			position: absolute;
+			top: 0;
+			left:0;
+			cursor: move;
+			display: none;
+		}
+		#top img{
+			width: 100%;
+			height: 100%;
+		}
+		#left{
+			width:650px;
+			height: 700px;
+			position: absolute;
+			border:1px solid red;
+			left:605px;
+			top:0px;
+			background:url(../html5/images/demo1.jpg) no-repeat;
+			background-position:0px -100px;
+			background-size:1.5;
+			display: none;
+		}
+		#down{
+			width: 100%;
+			height: 180px;
+			position: absolute;
+			bottom: 0;
+			left:0;
+			
+		}
+		#down ul{
+			display: inline-flex;
+			width: 100%;
+			height: 180px;
+			position: flex;
+			justify-content: space-between;
+		}
+		#down li,img{ 
+			width: 146px;
+			height:100%;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="top">
+			<img src="../html5/images/14.png" alt="">
+			<span></span>
+		</div>
+		<div id="left"></div>
+		<div id="down">
+			<ul>
+				<li><img src="../html5/images/14.png" alt=""></li>
+				<li><img src="../html5/images/14.png" alt=""></li>
+				<li><img src="../html5/images/14.png" alt=""></li>
+				<li><img src="../html5/images/14.png" alt=""></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		window.onload = function(){
+			//获取用到的标签
+			var box = document.getElementById("box");
+			var top = document.getElementById("top");
+			var img = top.getElementsByTagName("img")[0];
+			var span = top.getElementsByTagName("span")[0];
+			var down = document.getElementById("down");
+			var imgs = down.getElementsByTagName("img");
+			var left = document.getElementById("left");
+			
+			//1.0 给每个小图片绑定点击事件
+			for (var i = 0; i < imgs.length; i++) {
+				imgs[i].onclick = function(){
+					//1.1 获取点击这个图片的路径
+					var src = this.getAttribute("src");
+					//1.2 把路径设置到大图片上面
+					img.setAttribute("src",src);
+					left.style.background="url("+src+")";
+				}
+			}
+			//2.0 给大图标绑定鼠标进入事件
+
+			top.onmouseover = function(event){
+				//2.1 让span 和 左边图片显示
+				span.style.display = "block";
+				left.style.display = "block";
+			}
+
+			//3.0 给大图片绑定鼠标离开事件
+
+			top.onmouseout = function(event){
+				//3.1让span和左边大图消失
+				span.style.display = "none";
+				left.style.display = "none";
+			}
+
+			// 4.0 给大图片绑定动态onmousemove
+
+			top.onmousemove = function(event){
+				//4.1 event的兼容获取
+				var event = event||window.event;
+				//4.2 动态获取鼠标在大图片上的位置
+				var x=event.clientX-this.offsetParent.offsetLeft;
+				var y=event.clientY-this.offsetParent.offsetTop;
+				console.log(x,y);
+				//4.3让span 跟随鼠标
+				if (x < 80) {
+					x=80;
+				}
+				if(x > 520){
+					x = 520;
+				}
+				if(y<80){
+					y=80;
+				}
+				if(y>320){
+					y=320;
+				}
+				span.style.left=x-80+"px";
+				span.style.top=y-80+"px";
+				//4.4 让左边的大图动起来
+				
+				var w =Math.floor(span.offsetLeft/(this.offsetWidth-100)*100)+"%";
+				var h =Math.floor(span.offsetTop/(this.offsetHeight-100)*100)+"%"; 
+				console.log(w,h);
+				left.style.backgroundPosition=w+" "+h;
+			}
+		}
+	</script>
+</body>
+</html>

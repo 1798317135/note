@@ -1,0 +1,47 @@
+清理工具
+	ccleaner
+
+解压工具
+	winRAR
+
+视频播放工具
+	qq影音
+
+翻译工具
+	有道词典
+
+音乐播放器
+	网易云课堂
+
+云盘和下载工具
+	百度云盘
+	panDownload
+
+adobe工具
+	ps 
+	ai
+	ae
+
+office2016	
+	word 
+	excel
+	ppt
+
+编程工具
+	sublime_TExt3
+	pycharm
+
+数据库
+	mysql
+	mongodb
+	redis
+
+数据图形化管理工具
+	navicat
+
+浏览器
+	chrome
+
+vpn
+	自由门
+

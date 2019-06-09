@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+</body>
+</html>
+<script type="text/html"> <!-- window对象的使用 -->
+	//全局的变量都是window的属性，全局的函数都是window的方法
+	var aa = "你好";
+	console.log(aa===window.aa);//true
+	fun = function(){
+		var aa = "hellow";
+		return aa;
+	}
+	console.log(fun===window.fun);//true
+</script>
+<script type="text/html"><!-- window.location.href自动跳转 -->
+	console.log(11111);
+	console.log(22222);
+	window.location.href="http://www.baidu.com";
+	console.log(33333);
+	console.log(44444);
+	console.log(55555);
+</script>

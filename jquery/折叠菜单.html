@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+    <style type="text/css" media="screen">
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+    .nav{
+        width: 400px;
+        margin:100px auto;
+        position: relative;
+    }
+    .nav li{
+        width:400px;
+        min-height: 50px;
+        border:1px solid black;
+        line-height: 50px;
+        border-bottom: none;
+        display: flex;
+        justify-content:flex-start;
+        padding-left: 10px;
+    }
+    .nav>li:first-child{
+        border-top-right-radius:10px;
+        border-top-left-radius:10px;
+    }
+    .nav>li:last-child{
+        border-bottom:1px solid black;
+        border-bottom-right-radius:10px; 
+        border-bottom-left-radius:10px;
+    }
+    .nav>li span{
+        position: absolute;
+        display:inline-block;
+        right: 10px;
+        font-size:20px;
+    }
+    .nav li span.ratate{
+        transform: rotate(90deg);
+    }
+    .nav .slider{
+        width:600px;
+ display:none;
+    }
+    .nav .slider li{
+        background-color:orangered;
+         display:none;
+    }
+    .nav .slider li:hover{
+        background-color:orange;
+    }
+    </style>
+    <script>
+        $(function(){
+            //1.0 监听一级菜单点击
+            $(".nav>li").on("click",function(e){
+                $(this).children("span").toggleClass("ratate");
+                 $(this).next().slideToggle(1000);
+
+            });
+        });
+    </script>
+</head>
+<body>
+<ul class="nav">
+  <li>一级菜单<span>></span>
+  </li>
+    <ul class="slider">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+    </ul>
+  <li>一级菜单<span>></span></li>
+  <ul class="slider">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+    </ul>
+  <li>一级菜单<span>></span></li>
+  <ul class="slider">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+    </ul>
+  <li>一级菜单<span>></span></li>
+  <ul class="slider">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+    </ul>
+  <li>一级菜单<span>></span></li>
+  <ul class="slider">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+    </ul>
+</ul>          
+</body>
+</html>

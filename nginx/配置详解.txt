@@ -1,0 +1,351 @@
+https://blog.csdn.net/tsummerb/article/details/79248015
+
+##################### 默认网站
+
+1.0 当nginx 配置中只有一个server 的时候
+    那么这个server就是默认网站
+
+2.0 如果有多个server 的时候，他就是虚拟主机
+
+3.0 文件目录在 nginx 的 ltml 文件夹下
+
+################### 目录访问控制
+    1.0 可以规定目录的访问权限 和 返回状态
+        这里访问的目录是相对与html文件的相对路径
+
+    localtion /a {
+        allow 127.10.0.1; 允许谁访问
+        deny all; 拒绝谁访问
+        return 404  返回状态
+    }
+################### 密码认证
+
+1.0 localtion {
+    auth_basic '提示信息';
+    auth_basic_user_file  密码问价htpasswd 问价的路经
+
+    }
+2.0 创建密码 并写入到 密码文件 
+printf "root:$(openssl passwd -crypt
+123456)\n" > /etc/nginx/htpasswd
+
+3.0 重启nginx
+
+
+################ 日志管理
+
+1.0 日志分为错误日志 error.log 和 连接成功日志 access.log
+
+用log_format 用来定义日志格式
+    也可以定义成json格式
+    log_format log_name string
+
+    log_format  json '{"remote_ip":"$remote_addr",'
+                    '"time_local":"$time_local",'
+                    '"body_sent":$body_bytes_sent,'
+                    '"responsetime":$request_time,'
+                    '"upstreamtime":"$upstream_response_time",'
+                    '"upstreamhost":"$upstream_addr",'
+                    '"http_host":"$host",'
+                    '"method":"$request_method",'                     
+                    '"url":"$request_uri",'
+                    '"request":"$request",'
+                    '"xff":"$http_x_forwarded_for",'
+                    '"referer":"$http_referer",'
+                    '"agent":"$http_user_agent",'
+                    '"response_code":"$status"}';
+
+#    access_log  /var/log/nginx/access.log  main;
+     access_log  /var/log/nginx/access.log  json;！
+
+################## 防盗链 
+1.0 如果别人的网站跳转到你的资源地址， 
+    那么请求都就会出现referers
+    就会被屏蔽，返回404
+
+location ~* \.(gif|jpg|png|jpeg)$ {  
+    expires     30d;
+        valid_referers none blocke *.hugao8.com www.hugao8.com m.hugao8.com *.baidu.com *.google.com;
+    if ($invalid_referer) {
+     rewrite ^/ http://ww4.sinaimg.cn/bmiddle/051bbed1gw1egjc4xl7srj20cm08aaa6.jpg;
+     #return 404;
+    }
+    }
+# 第一行 其中“gif|jpg|jpeg|png|bmp|swf”设置防盗链文件类型，自行修改，每个后缀用“|”符号分开！
+
+# 第二行 有效期30小时
+
+# 第三行 valid_referers [none blocked] *.it300.com it300.com; 
+    如果把 none blocked 去掉 则 直接收入图片地址也会
+    被防盗链
+
+    就是白名单，允许文件链出的域名白名单，自行修改成您的域名！*.it300.com这个指的是子域名，域名与域名之间使用空格隔开！
+
+# 第四行 判断是否是referer 
+    
+# 第五行
+    防盗链返回的图片
+    如果是文件防盗链 直接协程
+    rewrite ^/ http://www.baidu.com
+
+#第六行 或者是404错误
+
+
+########################### 反向代理
+
+#运行用户
+#user somebody;
+ 
+#启动进程,通常设置成和cpu的数量相等
+worker_processes  1;
+ 
+#全局错误日志
+error_log  D:/Tools/nginx-1.10.1/logs/error.log;
+error_log  D:/Tools/nginx-1.10.1/logs/notice.log  notice;
+error_log  D:/Tools/nginx-1.10.1/logs/info.log  info;
+ 
+#PID文件，记录当前启动的nginx的进程ID
+pid        D:/Tools/nginx-1.10.1/logs/nginx.pid;
+ 
+#工作模式及连接数上限
+events {
+    worker_connections 1024;    #单个后台worker process进程的最大并发链接数
+}
+ 
+#设定http服务器，利用它的反向代理功能提供负载均衡支持
+http {
+    #设定mime类型(邮件支持类型),类型由mime.types文件定义
+    include       D:/Tools/nginx-1.10.1/conf/mime.types;
+    default_type  application/octet-stream;
+    
+    #设定日志
+    log_format  main  '[$remote_addr] - [$remote_user] [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+                      
+    access_log    D:/Tools/nginx-1.10.1/logs/access.log main;
+    rewrite_log     on;
+    
+    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+    sendfile        on;
+    #tcp_nopush     on;
+ 
+    #连接超时时间
+    keepalive_timeout  120;
+    tcp_nodelay        on;
+    
+    #gzip压缩开关
+    #gzip  on;
+ 
+    #设定实际的服务器列表 
+    upstream zp_server1{
+        server 127.0.0.1:8089;
+    }
+ 
+    #HTTP服务器
+    server {
+        #监听80端口，80端口是知名端口号，用于HTTP协议
+        listen       80;
+        
+        #定义使用www.xx.com访问
+        server_name  www.helloworld.com;
+        
+        #首页
+        index index.html
+        
+        #指向webapp的目录
+        root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp;
+        
+        #编码格式
+        charset utf-8;
+        
+        #代理配置参数
+        proxy_connect_timeout 180;
+        proxy_send_timeout 180;
+        proxy_read_timeout 180;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarder-For $remote_addr;
+ 
+        #反向代理的路径（和upstream绑定），location 后面设置映射的路径
+        location / {
+            proxy_pass http://zp_server1;
+        } 
+ 
+        #静态文件，nginx自己处理
+        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+            root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp\views;
+            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+            expires 30d;
+        }
+    
+        #设定查看Nginx状态的地址
+        location /NginxStatus {
+            stub_status           on;
+            access_log            on;
+            auth_basic            "NginxStatus";
+            auth_basic_user_file  conf/htpasswd;
+        }
+    
+        #禁止访问 .htxxx 文件
+        location ~ /\.ht {
+            deny all;
+        }
+        
+        #错误处理页面（可选择性配置）
+        #error_page   404              /404.html;
+        #error_page   500 502 503 504  /50x.html;
+        #location = /50x.html {
+        #    root   html;
+        #}
+    }
+}
+
+
+
+############################## 限速
+限速有两种模式 和 两个模块
+他可以有效的处理DDOS的攻击
+我们可以把它想象成浑身布满小孔的水桶
+---------- 第一种模式
+1.0 限制流速 ，也就是下载速率
+    用的是ngx_http_limit_req_module 模块
+
+    他又分为两种限制的概念
+    1.0  等待
+    2.0 丢弃
+
+**** 第一段在http{} 里面
+第一个参数 $binary_remote_addr 表示通过remote_addr这个标识来做限制，“binary_”的目的是缩写内存占用量，是限制同一客户端ip地址
+第二个参数：zone=one:10m表示生成一个大小为10M，名字为one的内存区域，用来存储访问的频次信息
+第三个参数：rate=1r/s表示允许相同标识的客户端的访问频次，这里限制的是每秒1次，还可以有比如30r/m的
+limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+
+*** 第二段 在locaton{} 里面
+第一个参数：zone=one 设置使用哪个配置区域来做限制，与上面limit_req_zone 里的name对应
+第二个参数：burst=5，重点说明一下这个配置，burst爆发的意思，这个配置的意思是设置一个大小为5的缓冲区当有大量请求（爆发）过来时，超过了访            问频次限制的请求可以先放到这个缓冲区内
+第三个参数：nodelay，如果设置，超过访问频次而且缓冲区也满了的时候就会直接返回503，如果没有设置，则所有请求会等待排队
+
+server {
+    location / {
+    limit_req zone=one burst=5 nodelay;
+}
+
+***** 下面的配置可以限制特定搜索引擎的访问
+
+limit_req_zone  $anti_spider  zone=one:10m   rate=10r/s;
+limit_req zone=one burst=100 nodelay;
+if ($http_user_agent ~* "googlebot|bingbot|Feedfetcher-Google") {
+    set $anti_spider $http_user_agent;
+}
+
+------- 第二种模式
+
+2.0 限制并发下载，也就是 同一ip同一时间一共可以下载的数量
+    ngx_http_limit_conn_module
+
+$binary_remote_addr是限制同一客户端ip地址
+$server是限制同一server最大并发数
+limit_conn为限制并发连接数，nginx 1.18以后用limit_conn_zone替换了limit_conn
+
+http {
+    limit_conn $binary_remote_addr zone=addr:10m;
+    ...
+    server {
+        ...
+        location /download/ {
+            limit_conn addr 1;
+            #带宽限制,对单个连接限数，如果一个ip两个连接，就是500x2k
+            limit_rate 100k;  
+        }
+    }
+}
+
+
+############# 正常情况下的限速配置
+
+map $remote_addr $rt_filtered_ip {
+        default $binary_remote_addr;
+        1.2.3.4 "";
+        4.4.4.4 "";
+}
+ 
+or
+ 
+geo $rt_filtered_ip {
+    default        $binary_remote_addr;
+ 
+    127.0.0.1      "";
+    192.168.1.0/24 "";
+    10.1.0.0/16    "";
+ 
+    ::1            "";
+    2001:0db8::/32 "";
+ 
+    1.2.3.4        ""
+}
+ 
+limit_conn_zone $binary_remote_addr zone=perip:10m;
+limit_conn_zone $server_name zone=perserver:10m;
+limit_conn_zone $host$uri zone=peruri:10m;
+limit_req_zone $rt_filtered_ip zone=qps:10m rate=1r/s;
+ 
+server {
+ 
+ 
+        location = /wp-login.php {
+            limit_req zone=qps burst=5 nodelay;
+            limit_conn perip 10;
+            limit_conn perserver 100;
+            limit_rate 500k;
+            include fastcgi_params;
+            fastcgi_pass 127.0.0.1:9000;
+        }
+}
+ 
+ab -n 100 -c 10 example.com/wp-login.php
+ 
+$binary_remote_addr是限制同一客户端ip地址；
+$server_name是限制同一server最大并发数；
+limit_conn为限制并发连接数；
+limit_rate为限制下载速度；
+
+
+################################ url重写
+
+他用到rewrite 模块
+基于pcre 库
+
+用于域名变更
+用户跳转
+伪静态
+set 设置变量
+    set $var value
+    作用域 server ，location，if
+if (条件) {} 判断  注意空格
+
+rewrite 正则 替换内容 flag 用于重定向
+    301 临时重定向
+    rewrite ^/$ www.baidu.com redirect
+
+    302 永久重定向
+    rewrite ^/$ www.baidu.com permanent
+
+    --flag
+    last 
+    用户url重写 他把本次匹配的 连接 接着到下一个匹配
+
+    return 返回 
+    breack 跳出
+模糊匹配符号
+~匹配
+！~不匹配
+~* 匹配不区分大小写
+
+精确匹配
+= ！=
+
+
+
+
+

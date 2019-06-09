@@ -1,0 +1,54 @@
+##############################################  mysql安装 和 启动 #################################
+
+------------------------ window ---------------------
+
+--- mysql 默认的安装位置
+
+    1.0 "C:\Program Files\MySQL\MySQL Server 8.0"
+
+--- mysql 增加环境变量
+    1.0 "C:\Program Files\MySQL\MySQL Server 8.0\bin\"
+    2.0 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqladmin"
+
+--- 初始化数据目录
+    1.0 指定路径
+        在c盘 下面创建一个my.ini文件
+        写入
+        [mysqld]
+        basedir=C:\\Program Files\\MySQL\\MySQL Server 8.0
+        datadir=D:\\MySQLdata 
+
+    2.0 运行 在ini文件中 指定的目录创建 数据目录MySQLdata 
+        C:\> bin\mysqld --initialize --console
+
+--- 新建 和 删除 mysql 服务
+    1.0 新建服务
+        mysqld install
+    2.0 删除服务
+    mysqld remove
+
+--- 开启mysql服务 和 关闭 mysql 服务
+    1.0 开启mysql 服务
+        net start 服务名称
+    2.0 关闭mysql服务
+        mysqladmin -u root -p shutdown
+
+------------------------------- liunx -------------------------------------
+
+
+
+############################################# 登陆 ######################################
+
+--- 如果需要登陆别的电脑上的 mysql服务器 需要 -h 来指定主机名
+    mysql -u root -h host -p 
+
+--- 如果在自己的电脑登陆mysql 可以省略 指定主机
+mysql -u root -p 
+host     = localhost
+user     = debian-sys-maint
+password = 2QCobrxRIeSAXOwm
+socket   = /var/run/mysqld/mysqld.sock;
+mysqld_safe --user=mysql --skip-grant-tables --skip-networking &mysql -u root mysql
+
+    
+    

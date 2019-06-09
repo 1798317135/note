@@ -1,0 +1,19 @@
+############################ 注册方法 
+1.0 修改hosts文件 C:\Windows\System32\drivers\etc\
+    最后一行加入0.0.0.0 account.jetbrains.com
+
+2.0 然后将注册码 放入 code里面
+
+########################## 汉化
+1.0 下载一个汉化包解压
+
+2.0 然后在安装根目录的lib文件找到 resource_en.jar文件
+
+3.0 复制一份到 桌面上 然后通过解压工具打开 找到massage
+
+4.0 打开汉化包解压内容 将其全部复制
+
+5.0 然后将复制内容替换massage里面的内容 然后将resource_en
+    改成resource_cn.jar 放入lib文件夹下 
+
+6.0 完成

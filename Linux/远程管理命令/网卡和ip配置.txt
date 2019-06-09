@@ -1,0 +1,7 @@
+-- ifconfig 查看网卡的配置信息
+    ifconfig | gred inet 查看网卡ip
+    
+-- ping ip 检测目标ip连接是否正常
+
+
+

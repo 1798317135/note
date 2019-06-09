@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#box{
+			width: 500px;
+			height: 300px;
+			margin:100px auto;
+			box-shadow:0 0 20px #888888;
+			text-align: center;
+		}
+		h3{
+			text-align: center;
+			padding-top: 20px;
+			box-sizing: border-box;
+
+		}
+		ul{
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			width: 90%;
+			margin:0 auto;
+			text-align: left;
+		}
+		ul li{
+			list-style:decimal;
+			position: relative;
+			left: 30px;
+		}
+		ul li input{
+			position:absolute;
+			left:-30px;
+			top:5px;
+		}
+		button{
+			margin-left: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<h3>歌曲排行榜</h3>
+		<ul>
+			<li><input type="checkbox">歌曲</li>
+			<li><input type="checkbox">时间都去哪了</li>
+			<li><input type="checkbox">海阔天空</li>
+			<li><input type="checkbox">真的爱你</li>
+			<li><input type="checkbox">不再犹豫</li>
+			<li><input type="checkbox">光辉岁月</li>
+			<li><input type="checkbox">喜欢你</li>
+			<li><input type="checkbox">偏偏喜欢你</li>
+			<li><input type="checkbox">爱拼才会赢</li>
+			<li><input type="checkbox">老街</li>
+		</ul>
+		<button id="quanxuan">全选</button><button id="quxiao">取消全选</button><button id="fanxuan">反选</button>
+	</div>
+</body>
+</html>
+<script>
+	/*主要是有input.checked属性*/
+	window.onload=function(){
+		//1.1 获取标签
+		var box =$("box");
+		var quanxuan=$("quanxuan");
+		var quxiao=$("quxiao");
+		var fanxuan=$("fanxuan");
+		var first=box.getElementsByTagName("input")[0];
+		var input = box.getElementsByTagName("input");
+		//封装id选择器
+		function $(id){
+			return typeof id==="string"?document.getElementById(id):null;
+		}
+		//1.2 绑定事件
+		quanxuan.onclick=function(){
+			alert("全选");
+			for (var i = 0; i < input.length; i++) {
+				input[i].checked=true;
+			}
+		}
+		quxiao.onclick=function(){
+			alert("取消");
+			for (var i = 0; i < input.length; i++) {
+				input[i].checked = false;
+			}
+		}
+		fanxuan.onclick=function(){
+			alert("反选");
+			for (var i = 0; i < input.length; i++) {
+				input[i].checked=!input[i].checked;
+			}
+		}
+		first.onclick=function(){
+			this.checked===true?quanxuan.onclick():quxiao.onclick();
+		}
+	}
+</script>

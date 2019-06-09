@@ -1,0 +1,47 @@
+一个服务器可以发布多个网站
+有多个server 
+就是虚拟主机
+
+################## 基于ip的虚拟主机
+可以用多ip服务器
+
+创建两个server
+第一个叫web1
+第二个叫web2
+
+1.0 有多个ip
+    可以使逻辑网卡给服务器添加自网卡
+    ifconfig ens33:192.168.1.36/24 up
+
+2.0 在html 文档目录李创建两个网站
+    mkdir /usr/local/nginx/html/web1
+    mkdir /usr/local/nginx/html/web2
+
+3.0 索引页 在每个网站床创建首页 区分两个网站
+    echo web1 >> /usr/local/nginx/html/web1/index.html
+    echo web2 >> /usr/local/nginx/html/web2/index.html
+
+
+
+
+
+################### 基于端口的虚拟主机
+只需要一个ip 可以很多端口
+但是无法告诉公网用户
+使用于局域网
+1.0 一个ip多个端口
+很简单
+但是需要配置防火墙开放 端口
+
+
+
+################# 基于域名的虚拟主机
+这个使用于公网
+
+这个需要配置以下解析文件
+/etc/host
+在下面追加域名
+127.0.0.1 www.abc.com
+127.0.0.1 www.bcd.com
+
+然后配置以下 server_name 域名

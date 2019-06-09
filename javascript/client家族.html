@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		#box{
+			width: 200px;
+			height: 200px;
+			border:11px solid black;
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+	<script>
+		var box = document.getElementById("box");
+		console.log(box.clientWidth,box.clientHeight);
+		//offsetWidth包括边框 clientWidth 不包括边框 都是可视区域的宽度
+		console.log(box.offsetWidth,box.offsetHeight);
+		//scrollWidth不包括边框 滚动的宽度和高度
+		console.log(box.scrollWidth,box.scrollHeight);
+		// 获得左边边框和上面边框的宽度
+		console.log(box.clientLeft,box.clientTop);
+		// 距离有定位父盒子的左边距离，和头部距离
+		console.log(box.offsetLeft,box.offsetTop);
+		// 获得屏幕偏移的位置
+		console.log(box.scrollTop,box.scrollLeft);
+		console.log(client().width);
+		console.log(client().height);
+
+		/**
+		 * clientWidth的兼容式封装
+		 * 
+		 * @return {[]}[description]
+		 */
+		function client() {
+			if (window.innerWidth!==null) {
+				return {
+					width:window.innerWidth,
+					height:window.innerHeight,
+				}
+			}else if(document.CompatMode="CSS1Compat"){
+				return {
+					width:document.documentElement.clientWidth,
+					height:document.documentElement.clientHeight,
+				}
+			}
+			return{
+				width:document.body.clientWidth,
+				height:document.body.clientHeight,
+			}
+		}
+	</script>
+</body>
+</html>

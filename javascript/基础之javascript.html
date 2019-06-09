@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en-zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+<script type="text/html"><!-- javascript的数据储存原理-->
+			/*JS内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
+			其中栈存放变量，堆存放复杂对象，池存放常量。
+			1.0基础数据类型与栈内存
+
+				1.1数据在栈内存中的存储与使用方式类似于数据结构中的堆栈数据结构，遵循后进先出的原则。
+				
+			2.0：引用数据类型与堆内存
+				2.1因此当我们要访问堆内存中的引用数据类型时，实际上我们首先是从栈中获取了该对象的地址引用（或者地址指针），然后再从堆内存中取得我们需要的数据。
+					var m={a:10,b:20};
+					var c=m;
+					console.log(c);
+					c.a=11;
+					console.log(m.a);
+				2.2在栈内存中的数据发生复制行为时，系统会自动为新的变量分配一个新值。
+					var a=10;
+					var b=a; 这就相当于b在栈没存中新创建了b这个独立的变量当a发生改变的时候不会影响b的值；
+					var obj={a:10,b:11}；
+					var dd=obj；相当于在栈内存中开辟一个独立的引用但是他们两个指向同一个堆内存，当堆内存发生改变他们对应的值也会发生改变。
+				2.3 不用的变量没有及时释放造成内存泄漏，系统的垃圾回收机制会释放没有引用的内存，自己可以功通过
+				引用=null手动清除引用 在下一轮的内存清理清除内存*/</script>
+<script type="text/html"><!-- 定义变量 -->
+	//变量名严格区分大小写
+	var name;
+	var age;
+	var six;
+	var name,age,six;
+	name = "Bruce Yang";
+	age = 18;
+	six = "男";
+	console.log(name,age,six)
+	var name = "Brcue Yang";
+	var age = 18;
+	var six = "男";
+	var aa = bb = cc =10; 
+</script>
+<script type="text/html"> <!-- 错误翻译 -->
+	1 	Uncaught TypeError: Cannot read property
+	未捕获的类型错误：不能读取属性;
+	2	SyntaxError：语法错误
+	3	Uncaught ReferenceError：引用错误
+	4	RangeError：范围错误
+	5	TypeError类型错误
+	6	URIError，URL错误
+	7	EvalError eval()函数执行错误
+</script>
+<script type="text/html"> <!-- 常见的数据类型 -->
+	// number 数字类型;
+	// string 字符类型
+	// float 浮点类型
+	// nudefend 变量未知或者未初始化
+	// boolean 布尔类型
+	// unll 空的
+	// object 对象类型
+	// Array 数组类型
+	var num1 = 1;
+	var str1 = "你好";
+	var flo1 = 12.2;
+	var nu = null; //null空的没有没有指针
+	var un = undefined; //未知的，没有初始化
+	var bool = true;
+	var arr = [];
+	var obj = {};
+	console.log(typeof num1);
+	console.log(typeof str1);
+	console.log(typeof flo1);
+	console.log(typeof nu);
+	console.log(typeof un);
+	console.log(typeof arr);
+	console.log(typeof bool);
+	console.log(typeof obj);
+</script>
+<script type="text/html"> <!-- 转化为字符串 -->
+	//toString() 转成字符串 null 和 undefined不能转换；转化后不会影响原变量
+	var num = 123;
+	var str = num.toString();
+	console.log(typeof str);
+
+	var bool = true;
+	var str = bool.toString();
+	console.log(typeof str);
+	console.log(typeof bool);
+	//String()
+	var un = undefined;
+	var str = String(un);
+	console.log(typeof un);
+	console.log(typeof str); 
+	//+号
+	var flo = 1.2;
+	var str = flo + '';
+	console.log(typeof flo);
+	console.log(typeof str)
+</script>
+<script type="text/html"><!-- 转换为number类型 -->
+	//Number()函数 空格或者空的字符串会转换成0，如果不是纯数字的字符串会转换成NaN非法的数字；
+	var str = '456';
+	console.log(typeof str);
+	var num = Number(str);
+	console.log(typeof num);
+
+	var str = '456hehhe';
+	console.log(typeof str);
+	var num = Number(str);
+	console.log(num)
+
+	//parseInt()提取字符串前面的整数 如果前面没有数字 则返回NaN非法的数字 第二个参数是进制;
+	var str = '456.212hehhe44546';
+	var num = parseInt(str);
+	console.log(num);
+	//parseFlost()提取字符串前面的浮点数 如果前面没有数字 则返回NaN非法的数字 第二个参数是进制
+	var num = parseFloat(str);
+	console.log(num);
+</script>
+<script type="text/html">  <!-- 三目运算符号 -->
+	var num = 3;
+	num<2?alert('对了'):alert('错了');
+</script>
+<script type="text/html"> <!-- if else if语句 -->
+	//如果条件成立 则不往下
+	var age =18;
+	if (age < 18) {
+		alert("未成年");
+	}else if (age == 18) {
+		alert('刚好成年')
+	}else if (age > 50){
+		alert('老年人')
+	}else if (age > 25){
+		alert("中年人")
+	}
+</script>
+<script type="text/html"><!-- swithc判断语句 -->
+	// case 判断是全等于，必须是值和类型都相等才可以
+	var num = 2;
+	switch(num > 2){
+		case true:
+			alert('你好');
+			break;
+		case false:
+			alert('不好');
+			break;
+		default:
+			alert('都不是');
+			break;
+	}
+</script>
+<script type="text/html"><!-- while 循环  -->
+	var num = 0;
+	while(num < 101){
+		num ++;
+		if (num%2 == 0) {
+			console.log(num);
+		}else{
+			continue;
+		}
+	}
+</script>
+<script type="text/html"><!-- do while 循环 -->
+	var i = 0;
+	do{
+		i++;
+		console.log(i);
+	}while(i<10)
+</script>
+<script type="text/html"><!-- for 循环 -->
+	for (var i = 1; i <=2; i++) {
+		console.log("好友列表"+i);
+		for(var j =1; j<=10; j++){
+			console.log("  好友"+j)
+		}
+	}
+</script>
+<script type="text/html"> <!-- for 绘制 -->
+	for(var i = 0; i < 20; i++){
+		for(var j = 0; j <=i; j++){
+			window.document.write('*');
+		}
+			window.document.write('<br>');
+	}		
+</script>
+<script type="text/html"><!-- for 绘制正三角形 -->
+	for(var i = 0; i < 5; i++){
+		for(var j = i; j <5; j++){
+			window.document.write('-');
+		}
+		for(var f = 0; f<2*i+1 ;f++){
+			window.document.write('*');
+		}
+		window.document.write('<br>');
+	}
+</script>
+<script type="text/html"><!-- 数组的创建方式 -->
+		var arr1 = new Array();
+		var arr2 = new Array(20);//规定长度
+		var arr3 = new Array('Bruce Yang',15,'heh');
+		var arr4 = ['Bruce Yang',15,'heh','Bruce Yang',15,'heh'];
+		arr4.length = 10;//规定字面量数组的长度
+		console.log(arr1,arr2,arr3,arr4);
+		for (var i = 0; i < arr4.length; i++) {
+			console.log(arr4[i]);
+		};
+		var arr5 = [];
+		arr5[0] = 'heh';
+		console.log(arr5[1]);
+</script>
+<script type="text/html"><!-- 数组练习 -->
+	// 1 。 求偶数
+	/*var arr1 = [454,2,45,45,8,35,6978,4];
+	var old = [];
+	for (var i = 0; i < arr1.length; i++) {
+		if (arr1[i]%2==0) {
+			old[i] = arr1[i];
+		}
+	}
+	console.log(old)*/
+
+	// 2 .求最大数和最小数
+	/*var numArr = [454,1,546456,2,45,45,5455464,8,35,6978,4,0];
+	var maxArr = numArr[0];
+	var maxValue;
+	var minValue;
+	var minArr = numArr[0]; 
+	for (var i = 0; i < numArr.length; i++) {
+		if (numArr[i]>maxArr) {
+			maxArr = numArr[i];
+			maxValue = i;
+		}
+		if (numArr[i]<minArr) {
+			minArr = numArr[i];
+			minValue = i;
+		}
+	}
+	console.log(maxArr);
+	console.log("最大值的下标是"+maxValue);
+	console.log(minArr);
+	console.log("最小值的下标是"+minValue);*/
+
+	//过滤数组当中的0；
+	var arr = ['呵呵',0,45,'撒地方',0];
+	var newarr = [];
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] !==0) {
+			newarr[newarr.length] = arr[i]
+		}
+	}
+	console.log(newarr);
+</script>
+<script type="text/html"><!-- 数组的应用 -->
+	//join 将数组元素转成字符串
+	arr = ['Bruce Yang',23,'男'];
+	console.log(arr);
+	var arr1 = arr.join("-");
+	console.log(arr1);
+	//pop 移除数组最后的一个元素 返回数组最后一个值
+	var num = arr.pop();
+	console.log(num);
+	console.log(arr);
+	//push 将新元素添加到数组的末尾 返回最后一个元素的位置从1开始
+	var item = arr.push("你好",445,[12,"呵呵"]);
+	console.log(item);
+	console.log(arr);
+	//shift() 将数组的第一项移除掉 返回数组第一项的值；
+	var item1 = arr.shift();
+	console.log(item1);
+	console.log(arr);
+	//unshift()在数组的头部添加项 返回数组的项目数
+	var item2 = arr.unshift('你好',789);
+	console.log(item2);
+	console.log(arr);
+	//reverse 翻转数组
+	var item3 = arr.reverse();
+	console.log(item3);
+	console.log(arr);
+	//concat copy原数组，在新数组中添加元素，不开会影响原数组,如果放入数组将数组拆分方进入
+	var item4 = arr.concat('nihoa',['张三',4]);
+	console.log(item4);
+	//indexOf
+	var arr = [1,2,3,10,1,3,4,5,6,4,7,8,2,9];
+	var item4 = arr.indexOf(4,4);//第一个参数查找内容，第二个参数从下标几开始找，如果没有找到则返回-1
+	console.log(item4);
+	//lastIndexOf从后面开始拆招 但还是从前开始查
+	var item5 = arr.lastIndexOf(2);
+	console.log(item5);
+	//sort升序排序 影响原数组
+	console.log(arr);
+	arr.sort(); //升序
+	arr.sort(function(a,b){
+		return b-a;
+	});//降序
+	console.log(arr);
+	//slice截取数组 不影响原数组
+	var item6 = arr.slice(2,8);//
+	console.log(item6);
+	console.log(arr);
+	//splice 删除和插入
+	var item7 = arr.splice(0,2);
+	console.log(arr);
+	console.log(item7);
+	var item8 = arr.splice(3,0,6,8);//下标3的地方插入
+	console.log(arr);
+	console.log(item8);
+	//forEach遍历数组
+	arr.forEach(function(value,index){
+		console.log(index+":"+value);
+	})
+	//map 映射新数组 
+	var item9 = arr.map(
+		function(value,key){
+			return key+3;
+		}
+		);
+	console.log(item9);
+	console.log(arr);
+	//fliter这只过滤条件产生新的数组,
+	var item10 = arr.filter(function(index) {
+		return index==="你好";
+	});
+	console.log(item10);
+	console.log(arr);
+	//every全部满足返回true
+	var item11 =arr.every(function(value,index){
+		return value<10;
+	})
+	console.log(item11);
+	//some 只要有一项满足条件返回true
+	var item12 = arr.some(function(value,index){
+		return value <10;
+	})
+	console.log(item12);
+	var arr9 = [11,12,"呵呵"];
+	//reduce 从前往后累加 相加
+	function red(a,b){
+		return b + a;
+	}
+	console.log(arr9.reduce(red,0));
+</script>
+<script type="text/html"><!-- 函数的声明 -->
+	//定义函数
+	function sun(){
+		console.log(1+3);
+	}
+	sun();
+	var sun1 = function(){
+		console.log(1+3);
+	}
+	sun1();
+	var sun2 = new Function(console.log(1+3));
+	sun2();
+</script>
+<script type="text/html"><!-- arguments对象 -->
+	//arguments获取形参的个数和实参
+	function sum(){
+		var value = 0;
+		for (var i = 0; i < arguments.length; i++) {
+			value+=arguments[i];
+		}
+		console.log(value);
+	}
+	sum(23,2,45,100);
+</script>
+<script type="text/html"><!-- 函数的使用 -->
+	function isEven(num,num2){
+		if (num%2===0) {
+			alert("偶数");
+		}else{
+			alert("奇数");
+		}
+		if (num>num2) {
+			return num;
+		}else{
+			return num2;
+		}
+	}
+	console.log(isEven(2,5));
+</script>
+<script type="text/html"><!-- 回调函数 -->
+	function sum(a,b,func){
+		return func(a,b);
+	}
+	function jia(a,b){
+		return a+b;
+	}
+	function jian(a,b){
+		return a-b;
+	}
+	function cheng(a,b){
+		return a*b;
+	}
+	function chu(a,b){
+		return a/b;
+	}
+	console.log(sum(3,6,jia));
+	console.log(sum(3,6,jian));
+	console.log(sum(3,6,cheng));
+	console.log(sum(3,6,chu));
+</script>
+<script type="text/html"><!-- 函数递归 -->
+	
+	function heh(n){
+		if (n===1 || n===2) {return 1};
+		return heh(n-1)+heh(n-2);
+	}
+	console.log(heh(10));
+</script>
+<script type="text/html"><!-- 字面量对象的遍历 -->
+	var obj = {
+		name:"BruceYang",
+		age : 18,
+		sex : "男",
+		eat:function(){
+			console.log("吃")
+		}
+	}
+	//for（var key in obj）｛｝遍历JSON
+	for (var key in obj) {
+		console.log(key);
+		console.log(obj[key]);
+	}
+</script>
+<script type="text/html"><!-- 构造函数 -->
+	function Person(){
+		var obj = new Object();
+		obj.name = null;
+		obj.age = null;
+		obj.sex = null;
+		obj.eat = function(name){
+			console.log(name+'在吃饭');
+		}
+		return obj;
+	}
+	var p = Person();
+	p.name = "张三";
+	p.eat("张三");
+	console.log(p);
+	var p1= Person();
+	console.log(p1);
+	// console.log(p===p1);
+</script>
+<script type="text/html"><!-- 构造函数 -->
+	function Dog(option){
+		this.name=option.name;
+		this.age=option.age;
+		this.friends=option.friends;
+		this.eat=function(someThing){
+			console.log(this.name+"再吃"+someThing);
+		}
+		this.run=function(someWhere){0.
+
+			
+			console.log(this.name+"炮"+"someWhere");
+		}
+	}
+	var smallDog = new Dog({name:"小花",age:18});
+	console.log(smallDog.name);
+	smallDog.eat('shit');
+	var bigDog = new Dog({name:"大花",age:20,friends:["大大","小小"]})
+	console.log(bigDog);
+</script>
+<script type="text/html"><!-- prototype 和construction-->
+	//prototype在构造函数里创建共享的值或者方法；
+	var arr = new Array();
+	Array.prototype.eat=function(){
+		alert("吃");
+	}
+	Array.prototype.name="杨";
+	arr.eat();
+	console.log(arr.name="张");
+	console.log(arr.eat);
+	var arr1 = new Array();
+	arr1.eat();
+	console.log(arr1.name);
+	//constructor
+	console.log(arr.constructor===arr1.constructor);//判断是否出自同一个构造函数
+</script>
+<script type="text/html"><!-- 构造函数的终极写法 -->
+	function Persen(option){
+		this._init(option);
+		this.run=function(someWhere){
+			alert(this.name+"在"+someWhere+"跑步");
+		}
+	}
+
+	Persen.prototype={
+		_init:function(option){
+			this.name =option.name;
+			this.age =option.age;
+			this.sex =option.sex;
+			this.Friends=option.Friends;
+		},
+		eat:function(someThing){
+			alert(this.name+"在吃"+someThing);
+		}
+	}
+	var bruce = new Persen({name:"李小龙",age:18,sex:"男",Friends:["伊诺山度","木村"]});
+	// bruce.name = "李小龙";
+		bruce.eat("肉");
+	var yang = new Persen({name:"杨振宇",age:23,sex:"男",Friends:"无"});
+	yang.eat("米饭");
+	yang.run("广场");
+	bruce.run("美国");
+	console.log(bruce===yang);
+	console.log(bruce.construction===yang.construction);
+</script>
+</head>
+</html>

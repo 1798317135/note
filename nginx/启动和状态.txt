@@ -1,0 +1,17 @@
+-- ./sbin/nginx -v  查看版本
+
+-- ./sbin/nginx 启动
+
+--./sbin/nginx -c /usr/local/nginx/conf/nginx.conf 指定配置文件启动
+
+--./sbin/nginx -s reopen 重启nginx
+
+-- ./sbin/nginx -s stop 停止nginx
+
+-- ./sbin/nginx -s reload 重新载入配置文件
+
+-- /usr/local/nginx$ ./sbin/nginx -t  检查配置文件是否正确
+
+-- Kill -9 进程
+
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persen>
+	<one>
+		<tit>第一张</tit>
+		<file>img/主图4.jpg</file>
+	</one>
+	<two>
+		<tit>第一张</tit>
+		<file>img/主图2.jpg</file>
+	</two>
+	<three>
+		<tit>第一张</tit>
+		<file>img/主图3.jpg</file>
+	</three>
+</persen>	

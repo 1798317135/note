@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding: 0;
+			list-style: none;
+			user-select: none;
+		 	text-decoration: none;
+		 	color:black;
+		}
+		nav ul{
+			width: 700px;
+			height: 50px;
+			background-color:#ccc;
+			margin:50px auto;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+		nav ul li{
+			float:left;
+			width: 100px;
+			text-align: center;
+			line-height: 50px;
+			border-left:1px black dashed;
+			box-sizing: border-box;
+			position:relative;
+			z-index: 1;
+			background:url(../html5/images/jingling.png) no-repeat center center;
+			background-position:50px 0;
+		}
+		nav ul li:first-child{
+			border-left: none;
+
+		}
+		nav ul li a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			
+		}
+		nav ul li span{
+			display: inline-block;
+			width:100px;
+			height: 50px;
+			background-color:skyblue;
+			position:absolute;
+			left: 0;
+			top:50px;
+			z-index: -1;
+			border-radius: 5px;
+	
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="#" title="">do</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/1 C.mp3"></audio>
+			</li>
+			<li><a href="#" title="">ri</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/2 D.mp3"></audio>
+			</li>
+			<li><a href="#" title="">mi</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/3 E.mp3"></audio>
+			</li>
+			<li><a href="#" title="">fa</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/4 F.mp3"></audio>
+			</li>
+			<li><a href="#" title="">so</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/5 G.mp3"></audio>
+			</li>
+			<li><a href="#" title="">la</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/6 A.mp3"></audio>
+			</li>
+			<li><a href="#" title="">xi</a>
+				<span class="bgc"></span>
+				<audio src="../html5/music/7 B.mp3"></audio>
+			</li>
+		</ul>
+	</nav>
+</body>
+<script src="myFun函数库.js"></script>
+<script>
+	window.onload = function(){
+		var li = $("li");
+		var span = $(".bgc");
+		console.log(span);
+		//1.0 监听每个li的鼠经过
+		var current_span,current_li,current_audio;
+		for (var i=0;i<li.length;i++) {
+			current_li=li[i];
+			current_li.onmouseover = function(){
+				//span标签动画移动
+				current_span = this.children[1];
+				slowAnimation(this.children[1],{top:0},0.2);
+				//播放音乐.play(),
+				current_audio = this.children[2];
+				current_audio.play();
+				//获取当前音乐时间并且清零以防重复播放;
+				current_audio.currentTime = 0;
+			}
+			//1.1 鼠标离开时
+			current_li.onmouseout = function(){
+				slowAnimation(current_span,{top:50},0.2)
+			}
+		}
+		
+		//2.0 键盘点击播放音乐
+		window.onkeydown = function(event){	
+			var e = event || window.event;
+			var currentCode = e.keyCode - 49;
+			if (currentCode>=0 && currentCode<=6) {
+				var currentIndex= span[currentCode];
+				slowAnimation(currentIndex,{top:0},0.2,function(){
+				slowAnimation(currentIndex,{top:50},0.2)});
+				var next = currentIndex.nextElementSibling||currentIndex.nextSibling;
+				next.play();
+				next.currentTime=0;
+			}
+		}
+	}
+</script>
+</html>

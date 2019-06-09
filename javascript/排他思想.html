@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+	<button>按钮6</button>		
+	<script>
+		//1.0 获取按钮
+
+		var btns =document.querySelectorAll("button");
+		//2.0 遍历
+
+		for (var i = 0; i < btns.length; i++) {
+			btns[i].index=i+1;
+			btns[i].onclick=function(){
+				console.log("这是第"+this.index+"个按钮");
+			}
+		}
+	</script>
+</body>
+</html>

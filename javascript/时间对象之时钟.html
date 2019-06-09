@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+		}
+		#box{
+			background-image: url(../html5/images/zhonbiao.jpg);
+			background-repeat:no-repeat; 
+			background-position:-28px -;
+			width: 1020px;
+			height: 970px;
+			margin:10px auto;
+			position:relative;  
+		}
+		.h{
+			background-image:url(../html5/images/fsdf.jpg);
+			background-repeat: no-repeat;
+			background-position:-31px -162px; 
+			transform:scale(0.5);
+			transform-origin:70px 230px;  
+			width: 67px;
+			height: 338px;
+			position:absolute;
+			top:274px;
+			left: 479px;
+		}
+		.m{
+			background-image:url(../html5/images/fsdf.jpg);
+			background-repeat: no-repeat;
+			background-position:-125px -25px; 
+			transform:scale(0.5);
+			transform-origin:45px 460px;    
+			width: 65px;
+			height: 475px;
+			position:absolute;
+			top:50px;
+			left: 475px;
+		}
+		.s{
+			background-image:url(../html5/images/fsdf.jpg);
+			background-repeat: no-repeat;
+			background-position:-217px -72px; 
+			transform:scale(0.5) rotate(30deg);
+			transform-origin:center 400px;  
+			width: 80px;
+			height: 593px;
+			position:absolute;
+			top:110px;
+			left: 470px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="h"></div>
+		<div class="m"></div>
+		<div class="s"></div>
+	</div>
+	<script>
+		window.onload=function(){
+			//定时器
+			var timer = setInterval(function(){
+				//初始化date对象
+				var date = new Date();
+				var mills = date.getMilliseconds();
+				var s = date.getSeconds()+ mills / 1000;
+				var m = date.getMinutes() + s /60;
+				var h = date.getHours()%12+ m/60;
+				$(".h").style.transform="rotate("+h*30+"deg) scale(0.5)";
+				$(".m").style.transform="rotate("+m*6+"deg) scale(0.5)";
+				$(".s").style.transform="rotate("+s*6+"deg) scale(0.5)";
+
+			},1000);
+
+			//选择器
+			function $(id){
+				return typeof id==="string"?document.querySelector(id):null;
+			}
+		}
+	</script>
+</body>
+</html>

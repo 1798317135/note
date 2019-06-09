@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		body{
+			text-align: center;
+		}
+		button{
+			margin-left: 10px;
+		}
+		span{
+			margin-top: 30px;
+			display:block;
+			font-size: 20px;
+			color:red;	
+		}
+	</style>
+</head>
+<body>
+	<button id="start">开始点名</button>
+	<button id="end">结束点名</button>
+	<span>张三</span>
+	<script>
+		window.onload=function(){
+			var names = ["张三","bruce lee","李四","王五","赵柳","杨妻"];
+			var timer = null;
+			$("#start").onclick=function(){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					var randoms = parseInt(Math.random()*names.length);
+					$("span").innerText=names[randoms];
+				},100);
+			};
+			$("#end").onclick=function(){
+				clearInterval(timer);
+			}
+			function $(id){
+				return typeof id === "string"?document.querySelector(id):null;
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style:none;
+		}
+	article{
+		width: 300px;
+		margin:100px auto;
+		line-height: 1.5em;
+		text-indent: 2em;
+		text-align: center;
+		text-align-last:left;
+		overflow: hidden;
+	}
+	#share_weibo{
+		width: 50px;
+		height: 50px;
+		background-color:skyblue;
+		position:absolute;
+		display:none;
+		user-select: none;
+		background:url(../html5/images/weibo.png) no-repeat;
+		background-size:cover;
+		cursor:pointer;
+	}
+	</style>
+</head>
+<body>
+	<article id="article">老实交代六块腹肌看拉三等奖弗兰克是否水电费离开世纪东方会计师两地分居离开家埃里克森地方离开加速离开的房间拉开圣诞节福利卡时间段福利卡讲述了快递费就爱上了肯德基弗兰克撒大家福利卡数据库代理费记录卡束带结发昆仑决埃里克森打飞机拉速度离开家阿两款都是放假了昆仑决阿卡丽圣诞节福利离开静安寺路口的附近老实交代六块腹肌看拉三等奖弗兰克是否水电费离开世纪东方会计师两地分居离开家埃里克森地方离开加速离开的房间拉开圣诞节福利卡时间段福利卡讲述了快递费就爱上了肯德基弗兰克撒大家福利卡数据库代理费记录卡束带结发昆仑决埃里克森打飞机拉速度离开家阿两款都是放假了昆仑决阿卡丽圣诞节福利离开静安寺路口的附近</article>
+	<div id="share_weibo">
+		
+	</div>
+	<script>
+		window.onload = function(){
+			var selectText;
+			var article = document.getElementById("article");
+			var share_weibo = document.getElementById("share_weibo");
+			article.onmouseup = function(event){
+				
+				//获取用户选中的文字window.getSelection();
+				//兼容模式
+				if (window.getSelection) {
+					selectText = window.getSelection().toString();
+				}else{//ie678
+					selectText = document.selection().createRange().text;
+				}
+				
+				var e = event||window.event;
+				var clientX = e.clientX;
+				var clientY = e.clientY;
+				console.log(window.getSelection().toString())
+				if (window.getSelection().toString()!=="") {
+					share_weibo.style.left=clientX+"px";
+					share_weibo.style.top = clientY+"px";
+					share_weibo.style.display = "block";
+				}
+			}
+			// 防止拖拽时选中内容
+			// window.getSelection ? window.getSelection().removeAllRange():document.empty();
+				document.onmousedown = function(event){
+				var e = event || window.event;
+				var targetId = e.target?e.target.id:document.srcElement.id;
+				if (targetId !== "share_weibo") {
+					share_weibo.style.display="none";
+					window.getSelection?window.getSelection().removeAllRanges():document.empty();
+				}else{
+					self.location.href="http://service.weibo.com/share/share.php?&title="+selectText;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

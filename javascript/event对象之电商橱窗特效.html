@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			user-select: none;
+			border:none;
+			overflow: hidden;
+		}
+		#box{
+			width:600px;
+			height: 135px;
+			margin: 200px auto;
+			position: relative;
+		}
+		#box ul{
+			width:800px;
+			position:absolute;
+			top: 0;
+			left: 0;
+		}
+		#box ul li,img{
+			width:200px;
+			float: left;
+																			
+		}
+		#scroll{
+			width: 100%;
+			height: 20px;
+			position:absolute;
+			bottom: 0;
+			left: 0px;
+			background-color:#ccc;
+		}
+		#scroll_bar{
+			width: 10%;
+			height: 100%;
+			background-color:#e68e68;
+			border-radius:5px;
+			cursor: pointer;
+			transition:background-color 0.1s;
+			position:absolute;
+		}
+		#scroll_bar:active{
+			background-color:orangered;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><img src="../html5/images/10.jpg" alt=""></li>
+			<li><img src="../html5/images/11.jpg" alt=""></li>
+			<li><img src="../html5/images/13.jpg" alt=""></li>
+			<li><img src="../html5/images/10.jpg" alt=""></li>
+			<li><img src="../html5/images/11.jpg" alt=""></li>
+			<li><img src="../html5/images/13.jpg" alt=""></li>
+			<li><img src="../html5/images/10.jpg" alt=""></li>
+			<li><img src="../html5/images/11.jpg" alt=""></li>
+			<li><img src="../html5/images/13.jpg" alt=""></li>
+		</ul>
+		<div id="scroll">
+			<div id="scroll_bar">
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		window.onload = function(){
+
+			//1.0 获取节点
+			var box = document.getElementById("box");
+			var ul = box.children[0];
+			var li = ul.getElementsByTagName("li");
+			var scroll = document.getElementById("scroll");
+			var scroll_bar = scroll.children[0];
+			var li_width = 0;
+			//2.1 设置ul的宽度
+			for (var i = 0; i < li.length; i++) {
+				  li_width += li[i].offsetWidth;
+			}
+			ul.style.width = li_width+"px";
+
+			//2.0 设置滚动条 宽度百分比
+			//滚动条的宽度=（盒子的宽度/内容的宽度）*盒子的宽度;
+			var cent =(box.offsetWidth/ul.offsetWidth)*box.offsetWidth;
+			if (cent<5) {
+				cent = 5;
+			}
+			scroll_bar.style.width=cent+"px";	
+
+			//3.0 监听鼠标落下事件
+			scroll_bar.onmousedown = function(event){
+				var e = event || window.event;
+				var offset = e.clientX-this.offsetLeft;
+				//3.1 监听scroll_bar在滚动条上的动态位置
+				scroll.onmousemove = function(event){
+					var e = event||window.event;
+					var x = event.clientX-offset;
+					//3.2 带入移动
+					if (x<=0){
+						x=0;
+					}else if(x>=scroll.offsetWidth-scroll_bar.offsetWidth){
+						x=scroll.offsetWidth-scroll_bar.offsetWidth;
+					}
+					scroll_bar.style.left=x +"px";
+				//3.3 算出滚动条移动的百分比然后带入到图片移动
+				//内容走的距离=（内容的长度-盒子的长度）/（盒子的长度-滚动条的长度）*滚动条走的距离
+					var scroll_cent =parseInt(x/(scroll.offsetWidth-scroll_bar.offsetWidth)*100)/100;
+					var ul_cent = -parseInt((ul.offsetWidth-box.offsetWidth) * scroll_cent);
+						ul.style.left=ul_cent+"px";
+				}
+				//3.4 鼠标弹起停止移动
+				document.onmouseup = function(){
+					scroll.onmousemove = null;
+				}			
+			}
+			//4.0 监听鼠标点击scroll
+			scroll.onclick = function(event){
+
+				//4.1 防止事件冒泡
+
+				if (event.target==scroll) {
+					var e = event||window.event;
+					var x = event.clientX - this.offsetParent.offsetLeft;
+				if (x<=0){
+						x=0;
+					}else if(x>=scroll.offsetWidth-scroll_bar.offsetWidth){
+						x=scroll.offsetWidth-scroll_bar.offsetWidth;
+					}
+					scroll_bar.style.left=x +"px";
+					var scroll_cent =parseInt(x/(scroll.offsetWidth-scroll_bar.offsetWidth)*100)/100;
+					var ul_cent = -parseInt((ul.offsetWidth-box.offsetWidth) * scroll_cent);
+						ul.style.left=ul_cent+"px";
+				}
+				
+			}
+			
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1.0 promse 主要用于异步计算
+        2.0 可以将异步操作队列化，按照期望的顺序执行，返回预期合理的结果
+
+     -->
+     <script>
+        // 1、Promise.resolve()
+        // 2、Promise.reject()
+        // 3、Promise.prototype.then()
+        // 4、Promise.prototype.catch()
+        // 5、Promise.all() // 所有的都有完成，相当于 且
+        // 6、Promise.race() // 完成一个即可，相当于 或
+
+        // 1、Promise.resolve()的作用将现有对象转为Promise对象resolvedl;Promise.resolve('test')==new Promise(resolve=>resolve('test'))
+
+        // 2、Promise.reject()也是返回一个Promise对象,状态为rejected；
+
+        // 3、then方法上边已经做介绍，这里就不再介绍。
+
+        // 4、catch():发生错误的回调函数。
+
+        // 5、Promise.all()适合用于所有的结果都完成了才去执行then（）成功的操作。举个例子：
+        /*var pro = new Promise((resolve,reject)=>{
+            // 做一些异步操作
+            var rd = Math.random()*2000+3000;
+            setTimeout(()=>{
+                console.log("执行异步任务");
+                resolve("得到了异步任务得返回"+rd);
+            },2000) ;
+        })
+        pro.then((data)=>{
+            console.log(data)
+        })*/
+
+
+        
+
+        // 通常我们会把promise对象包在一个函数中
+        // 让这个函数返回一个promise对象
+        // 这样有利于把回调分离出来
+        // 在外部 通过这个函数 来直接点语法 .then()
+        // 也可以控制执行顺序
+        function runAsync1 () {
+            // body...
+            return new Promise((resolve,reject)=>{
+                // 做一些异步操作
+                setTimeout(()=>{
+                    console.log('执行了异步任务1')
+                    resolve(1)
+                },2000);
+            });
+        }
+        function runAsync2(){
+            return new Promise((resolve,reject)=>{
+                // 做一些异步操作
+                setTimeout(()=>{
+                    console.log('执行了异步任务2')
+                    resolve(2)
+                },3000);
+            });
+        }
+        function runAsync3(){
+            return new Promise((resolve,reject)=>{
+                // 做一些异步操作
+                setTimeout(()=>{
+                    console.log('执行了异步任务3')
+                    resolve(3)
+                },4000);
+            });
+        }
+
+        /*############# 串行*/
+        // runAsync3().then((data)=>{
+        //     console.log(data)
+        //     return runAsync1()
+        // }).then((data)=>{
+        //     console.log(data)
+        //     return runAsync2()
+        // }).then((data)=>{
+        //     return data + "456"
+        // }).then((data)=>{
+        //     console.log(data)
+        // }).catch((err)=>{
+        //     console.log(err)
+        // })
+        // runAsync().then((date)=>{
+        //     console.log(date)
+        // })
+        // 
+        /*############# 并行*/
+        // all可以完成并行 
+        // 把多个任务用数组得方式放入
+        // Promise.all([runAsync3(),runAsync1(),runAsync2()]).then((results)=>{
+        //     var r = results.reduce((x,y)=>{return x+y})
+        //     console.log(r)
+        // },(err)=>{
+        //     console.log(err)
+        // });
+        // 
+        // race方法 和all得区别是 只要有一个完成就会调用then方法
+        Promise.race([runAsync3(),runAsync1(),runAsync2()]).then((results)=>{
+            console.log(results)
+        });
+     </script>
+
+</body>
+</html>

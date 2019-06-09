@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		body{
+			height: 3000px;
+			width: 3000px;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		window.onscroll = function(){
+			// scroll家族的兼容问题
+			var scrollTop = document.documentElement.scrollTop||document.body.scrollTop||window.pageXoffset||0;
+			//获取滚动条距离文档顶部的距离
+			console.log(scrollTop);
+			// scrollTo(x,y)让屏幕偏移到什么位置x横 y 纵
+			window.scroll(0,0);
+		}
+	</script>
+</body>
+</html>

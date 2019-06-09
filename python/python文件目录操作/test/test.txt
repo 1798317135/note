@@ -1,0 +1,10 @@
+RAR：压缩包
+html：网页
+zip：压缩包
+pdf：pdf文档
+rm：视频文件
+avi：视频文件
+tmp：临时文件
+xls：excel工作表
+txt：记事本
+doc：word文档

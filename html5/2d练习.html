@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>形变</title>
+<style type="text/css" media="screen">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	div{
+		width: 140px;
+		height: 140px;
+		border:1px solid #ccc;
+		background-color: pink;
+		margin: 100px auto;
+		perspective: 600px;/*近大远小必须写在父元素里面*/
+	}
+	div:hover img{
+		transform: rotateX(70deg); /*2d变形里面的rotateY以Y轴进行旋转*/
+	}
+	div img{
+		transform-origin:bottom;   /*改变旋转的中心点为左边*/
+		transition: transform 1s;  /*添加过渡效果*/
+	}
+</style>
+</head>
+<body>
+	<div>
+		<img src="images/img.png" alt="">
+	</div>
+</body>
+</html>
