@@ -71,7 +71,7 @@ git add xxx
     git checkout -- 撤销文件 他可以取消上次工作区得修改
 
     暂存区得撤销
-    git reset HEAD 撤销文件 他可以取消暂存
+    git reset 撤销文件 他可以取消暂存
 
     版本库得撤销
     直接回退版本库

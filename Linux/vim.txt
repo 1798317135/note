@@ -163,7 +163,7 @@ dd: 删除当前光标所在行
 在末行模式下使用s命令
 
     headline,footlines#PATTERN#string#g
-
+:
     1,$:表示全文
 
     %：表示全文
