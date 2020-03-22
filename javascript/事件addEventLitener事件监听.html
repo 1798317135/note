@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件流</title>
+    <style type="text/css">
+        #content{width: 150px;height: 150px;background-color: red;}
+        #btn{width: 80px;height: 80px;background-color: green;}
+    </style>
+</head>
+<body>
+    <div id="content">content
+        <div id="btn">button</div>
+    </div>
+
+    <script type="text/javascript">
+        txt = "<p>浏览器代号: " + navigator.appCodeName + "</p>";
+        txt+= "<p>浏览器名称: " + navigator.appName + "</p>";
+        txt+= "<p>浏览器版本: " + navigator.appVersion + "</p>";
+        txt+= "<p>启用Cookies: " + navigator.cookieEnabled + "</p>";
+        txt+= "<p>硬件平台: " + navigator.platform + "</p>";
+        txt+= "<p>用户代理: " + navigator.userAgent + "</p>";
+        txt+= "<p>用户代理语言: " + navigator.systemLanguage + "</p>";
+        document.getElementById("example").innerHTML=txt;
+    </script>
+</body>
+</html>

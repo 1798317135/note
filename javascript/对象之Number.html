@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Number是内置对象
+        var aa = "123";
+        // 转换为Number类型
+        var num = Number(aa);
+        console.log(typeof num,num)
+
+        // ------------- 属性
+        console.log(Number.MAX_VALUE)
+        console.log(Number.MAX_VALUE)
+
+        // NaN是Number类型,标识非法数字
+        console.log(typeof NaN)
+
+        // ------------- 方法
+        // 把数字转换为字符串，规定保留几位小数
+        var num = 3.88;
+        var item = num.toFixed(1);
+        console.log(item,typeof item);
+
+        // 规定保留几位小数
+        var num = 12.09;
+        var n = num.toPrecision(2);
+        console.log(n)
+
+        // 判断是否是一个整数
+        var int = 123.3;
+        console.log(Number.isSafeInteger(int))
+    </script>
+</body>
+</html>

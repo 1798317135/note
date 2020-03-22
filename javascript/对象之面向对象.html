@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		//1.0 面向对象的三大特性 继承，封装，多态
+		//2.0 构造函数的首字母为大写 可以返回对象的函数
+		//3.0 new 可以将构造函数 弄出来一个对象
+		//		 在内存开辟一块空间
+		//		 将this指针指向该空间得引用地址
+		//4.0 constructor 返回 创建此对象的构造函数
+		//5.0 prototype 在构造函数里添加此函数创建的所有对象的共同属性和方法
+		//6.0 任何得对象里面都有 valueof()和 toString()这两个方法
+		function Rectangle(option){
+			this._init(option);
+		}
+		Rectangle.prototype = {
+			//属性
+			_init:function(option){
+				// 1.0 父标签
+				this.parentId = option.parentId;
+				//2.0 位置
+				this.left = option.left||0;
+				this.top = option.top||0;
+				//3.0 宽高
+				this.width = option.width||0;
+				this.height = option.height||0;
+				//4.0 边框
+				this.border = option.border||"none";
+				this.borderRadius = option.borderRadius||0;
+				//5.0 背景
+				this.backgroundColor = option.backgroundColor||"black";
+				},
+				//方法
+				//绘制
+				render:function(){
+					//6.1 创建标签
+					var parentNode = document.getElementById(this.parentId);
+					var parentChild = document.createElement("div");
+					parentChild.style.position = "absolute";
+					parentChild.style.left = this.left+"px";
+					parentChild.style.top = this.top+"px";
+					parentChild.style.width = this.width+"px";
+					parentChild.style.height = this.height +"px";
+					parentChild.style.backgroundColor = this.backgroundColor;
+					parentChild.style.border =this.border;
+					parentChild.style.borderRadius=this.borderRadius+"px";
+					parentNode.appendChild(parentChild);
+				},
+		}
+		var rect = new Rectangle({
+			parentId:"box",
+			left:50,
+			top:50,
+			width:200,
+			height:200,
+			border:"5px solid black",
+			backgroundColor:"green",
+			borderRadius:10,
+		});
+		console.log(Rectangle.prototype === rect.__proto__)
+		rect.render();
+		console.log(rect.valueOf())
+		
+	</script>
+</body>
+</html>

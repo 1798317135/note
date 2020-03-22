@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "东方明珠";
+  src: url("东方明珠.woff2") format("woff2"),
+       url("东方明珠.woff") format("woff"),
+       url("东方明珠.ttf") format("truetype"),
+       url("东方明珠.eot") format("embedded-opentype"),
+       url("东方明珠.svg") format("svg"),
+       url("东方明珠.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}

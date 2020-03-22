@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button id="btn" name="btn" class="btn">点我</button>
+	<img id="img" src="../html5/images/demo1.jpg" width="200px">
+</body>
+</html>
+<script type="text/html"><!-- 选择器 -->
+	window.onload=function(){
+		var btn= document.getElementById("btn");
+		var btn1=document.getElementsByName("btn")[0];
+		var btn2=document.getElementsByClassName("btn")[0];
+		var btn3=document.getElementsByTagName("button")[0];
+		var btn4=document.querySelector(".btn");
+		var btn5=document.querySelectorAll(".btn")[0];
+		console.log(btn);
+		console.log(btn1);
+		console.log(btn2);
+		console.log(btn3);
+		console.log(btn4);
+		console.log(btn5);
+	}
+</script>
+<script type="text/html"><!-- 绑定事件 -->
+	window.onload=function(){
+		var logo = document.querySelector("#btn");
+		logo.onclick=deat;
+		function deat(){
+			alert("点我");
+		}
+	}
+</script>
+<script>
+	window.onload=function(){
+		var box = document.querySelector("#img");
+		// console.log(box);
+		// console.log(close);
+		box.onmouseover = function(){
+			console.log("鼠标进入");
+			this.src="../html5/images/demo2.jpg";
+		}
+		box.onmouseout = function(){
+			console.log("鼠标离开");
+			this.src="../html5/images/demo1.jpg";
+		}
+		box.onmousemove=function(){
+			console.log("移动");
+		}
+	}
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        ----------------全局属性
+         */
+        // 表示无穷大
+        console.log(typeof Infinity);
+
+        // NaN 表示非法数字
+        console.log(typeof NaN);
+
+        //undefine 表示为定义
+        console.log(typeof undefined)
+
+        /*
+        -----------------全局函数
+         */
+        // 验证是否是无穷大，
+        // 它会转换为Number类型 
+        // undefinde NaN 和 无穷大 返回false
+        console.log(isFinite())
+
+        // 判断是否是非法数字 
+        // 先转在判断 如果是返回true
+        console.log(isNaN("A"))
+
+        // Number 转换为数字 前面加 + 为简写形式
+        var str = "123";
+        // var num = Number(str)
+        var num = + str;
+        console.log(typeof num,num);
+        
+        //  String 转换为字符串强转
+        console.log(String(undefined));    
+        // parseInt 提取字符串开头为数字的整数部分
+        var str = "12395.666aaaa";
+        var num = parseInt(str);
+        console.log(num)
+
+        // parseFloat 
+        console.log(parseFloat(str))
+        
+        // 字符的编码和接码
+        var str = "你好123?哈哈哈垃圾";
+        var esc = escape(str);
+        var unesc = unescape(esc);
+        console.log(esc,unesc);
+
+        // eval 执行字符串
+        var b = 3; 
+        var e = eval("1+b");
+        console.log(e,typeof e)
+
+        // URL编码和接码
+        var https = "https://www.baidu.com";
+        var enc = encodeURIComponent(https);
+        console.log(enc,decodeURIComponent(enc))
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<button>隐藏</button><br>
+	<img src="../html5/images/demo1.jpg">
+</body>
+</html>
+<script>
+	// <!-- innerHtml和innerText获取或者修改节点或者文本 -->
+	window.onload=function(){
+		//1. 获取节点
+		var btn = document.querySelector("button");
+		var img = document.getElementsByTagName("img")[0];
+		console.log(img);
+		//2. 绑定事件
+		btn.onclick=function(){
+			//3. 事件驱动程序
+			if (btn.innerText==="隐藏") {
+				console.log(btn);
+				img.style.display="none";
+				btn.innerText="显示";
+				console.log(btn.innerText);
+			}else{
+				console.log(btn);
+				img.style.display="inline-block";
+				btn.innerText="隐藏";
+			}
+		}
+	}
+</script>

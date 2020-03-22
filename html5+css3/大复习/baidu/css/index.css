@@ -1,0 +1,204 @@
+@import "init.css";
+html{
+    background:url(../image/12.jpg) no-repeat center/cover;
+    background-attachment: scroll;
+}
+/*############# 头部 ##################*/
+#header{
+    height: 32px;
+    min-width: 960px;
+    line-height: 32px;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: rgba(0,0,0,0.2);
+}
+#header a{
+    color:#fff;
+    text-decoration:underline;
+    margin-left: 1.3rem;
+}
+#header .header-left{
+    float: left;
+    font-family: "arial";
+    color:#fff;
+}
+#header .left-weather{
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+#header .left-weather span{
+    margin-left: 1.3rem;
+}
+#header .left-weather span em{
+    margin-left:0.3rem;
+}
+#header .left-weather span .wp-img{
+    display: inline-block;
+    vertical-align:middle;
+    width: 1.8rem;
+    height: 1.8rem;
+    background:url(../image/a0.png) no-repeat;
+}
+#header .left-weather span .wp-ft{
+    font-weight: 700;
+    color:#badc00;
+}
+#header .header-right{
+    float: right;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+#header .feiyan{
+    color:red;
+}
+#header .feiyan:after{
+    content: "";
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: red;
+    border-radius: 50%;
+    vertical-align: 1.2rem;
+}
+#header .more-products{
+    display: inline-block;
+    background-color: #398bfb;
+    width: 86px;
+    text-align: center;
+    text-decoration: none;
+    background-color:;
+}
+/*############# 头部end ##################*/
+
+
+/*############# search box ##################*/
+#search_box{
+    width: 64.2rem;
+    height: 26rem;
+    margin:0 auto;
+}
+#search_box .logo{
+    width: 100%;
+    text-align: center;
+}
+#search_box .logo img{
+    width: 27rem;
+    height: 12.9rem;
+    vertical-align: top;
+}
+#search_box .search{
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 4rem;
+}
+#search_box .search form{
+    width:100%;
+    height: 100%;
+    position: relative;
+}
+#search_box .search form input{
+    float: left;
+}
+#search_box .search form span{
+    display: inline-block;
+    width: 1.8rem;
+    height: 1.6em;
+    position: absolute;
+    top:1.2rem;
+    left: 51rem;
+    background-image:url(../image/jingling.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+#search_box .search form span:hover{
+    background-position: 0 -2rem;
+}
+#search_box .search input[type="text"]{
+    display: inline-block;
+    width: 53.7rem;
+    height: 100%;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+#search_box .search input[type="submit"]{
+    display: inline-block;
+    width: 10.5rem;
+    height: 100%;
+    font: 1.5rem arial;
+    cursor: pointer;
+}
+/*############# search box end ##################*/
+
+/*############# news-box ##################*/
+#news_box{
+    width: 89.5rem;
+    height: 40.5rem;
+    margin:0 auto;
+    background-color: white;
+}
+
+#news_box .new-top{
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    background-color:rgb(232,232,232);
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+}
+#news_box .new-top a{
+    color:black;
+    font-size: 1.4rem;;
+    display: inline-block;
+    box-sizing: border-box;
+    padding:0 2.5rem;
+}
+#news_box .new-top a:hover{
+    background-color:rgba(0,0,0,0.5);
+}
+#news_box .new-bm{
+
+}
+/*############# news-box end ##################*/
+
+/*############# footer ##################*/
+#footer{
+    height: 4rem;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    font: 1.3rem "arial";
+    line-height: 4rem;
+}
+#footer .m-flag{
+    width: 2rem;
+    height: 6rem;
+    background-color: #3c4049;
+    position: absolute;
+    top: -6rem;
+    left: 30rem; 
+    text-align: center;
+    line-height: 3rem;
+    color:white;
+}
+#footer a{
+    color:#999;
+    margin-left: 2rem;
+}
+#footer a:hover{
+    color:#333;
+}
+#footer .footer-left{
+    float: left;
+}
+#footer .footer-right{
+    float: right;
+    color:#999;
+    margin-right: 2rem;
+}
+#footer .footer-right span{
+    margin-left: 2rem;
+}
+/*############# footer end ##################*/

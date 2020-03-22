@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var num = 10.415;
+		var num1='10.212呵呵';
+
+		console.log(Math.ceil(num));//向上取整
+
+		console.log(Math.floor(num));//向下取整只取小数点前面的
+
+		console.log(Math.round(num));//四舍五入
+
+		console.log(parseInt(4.9));//取变量最前面的整数如果没有则为NaN
+
+		console.log(num.toFixed(1));
+		//取小数点后面的几位
+
+		console.log(Math.abs(num));
+		// 取绝对值
+
+
+		// ------------- Math.roundm 自定义范围
+		//如果你希望生成任意值到任意值的随机数，公式就是这样的：
+		// max - 期望的最大值
+		// min - 期望的最小值 
+		// parseInt(Math.random()*(max-min+1)+min,10);
+		// Math.floor(Math.random()*(max-min+1)+min);
+		// 
+		console.log(parseInt(Math.random()*(10+1),10));
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="init.css">
+    <style>
+        /*
+        translate(x,y) 
+        rotate(..deg)
+        scale(x,y)
+        skew(xdeg,ydeg)
+        matrix() 不常用
+         */
+        div{
+            width: 200px;
+            height: 200px;
+            border:1px solid black;
+        }
+        div:nth-child(2n+1){
+            background: url(../images/13.jpg) no-repeat 0/cover;
+        }
+        div:nth-child(2n){
+            background: url(../images/14.png) no-repeat 0/cover;
+        }
+
+
+        div.box1{
+            /*从当前位置想x和y轴进行移动*/
+            transform: translate(80px,20px);
+        }
+        div.box2{
+            /*元素顺时针旋转角度 如果为负数则逆时针*/
+            transform: rotate(30deg)
+        }
+        div.box3{
+            /*元素向x和y放大或者缩小*/
+            transform: scaleZ(0.5,0.5);
+        }
+        div.box4{
+            /*skew向x和y轴旋转一定角度*/
+            transform: skew(30deg,0deg);
+        }
+        div.box5{
+            /*不常用*/
+            transform: matrix();
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+</body>
+</html>

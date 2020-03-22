@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 判断简单你得数据类型用typeof
+        // 但是它无法判断数组和对象
+        var aa = [];
+        var bb = {};
+        var str = "";
+        console.log(typeof aa === typeof bb)
+        
+        // toString方法 这是最精准得
+        console.log(Object.prototype.toString.call(str) === "[object String]")
+
+        // constirtor 方法
+        console.log(bb.constructor === Object)
+
+        // instanceof
+        console.log(aa instanceof Object)
+
+    </script>
+</body>
+</html>

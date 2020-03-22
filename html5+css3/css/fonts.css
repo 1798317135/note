@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "fz1";
+  src: url("../font/FZQiuDYRHJW.woff2") format("woff2"),
+       url("../font/FZQiuDYRHJW.woff") format("woff"),
+       url("./font/FZQiuDYRHJW.ttf") format("truetype"),
+       url("./font/FZQiuDYRHJW.eot") format("embedded-opentype"),
+       url("./font/FZQiuDYRHJW.svg") format("svg"),
+       url("./font/FZQiuDYRHJW.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  /*加快*/
+  font-display：optional;
+}
+@font-face {
+  font-family: "fz2";
+  src: url("../font/FZZJ-OYCDKSJW.woff2") format("woff2"),
+       url("../font/FZZJ-OYCDKSJW.woff") format("woff"),
+       url("../font/FZZJ-OYCDKSJW.ttf") format("truetype"),
+       url("../font/FZZJ-OYCDKSJW.eot") format("embedded-opentype"),
+       url("../font/FZZJ-OYCDKSJW.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ico';
+  src: url('iconfont.eot');
+  src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('../font/iconfont.woff2') format('woff2'),
+      url('../font/iconfont.woff') format('woff'),
+      url('../font/iconfont.ttf') format('truetype'),
+      url('../font/iconfont.svg#iconfont') format('svg');
+}
+.ico {
+  font-family: "ico" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*em{
+  font: 0rem ico;
+}*/

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+			list-style: none;
+		}
+		#box{
+			width: 500px;
+			height: 300px;
+			border: 1px solid #ccc;
+			margin: 100px auto;
+		}
+		#box .menu{
+			width: 100%;
+			height: 50px;
+			background-color:#ccc;
+			border-bottom:1px solid #ccc;
+			box-sizing: border-box;
+		}
+		#box .menu li{
+			line-height: 50px;
+			float: left;
+			width: 100px;
+			height: 50px;
+			background-color:#ccc;
+			text-align: center;
+			vertical-align:middle;
+			box-sizing: border-box;
+			cursor:pointer;
+		}
+		#box .menu li:hover{
+			color:orangered;
+			font-weight: bolder;
+		}
+		#box .menu li.select{
+			background-color:#fff;
+			border-left: 1px solid #ccc;
+			border-right: 1px solid #ccc;
+		}
+		#box .menu li.select:first-of-type{
+			border-left:none;
+		}
+		#box .menu li.select:last-child{
+			border-right:none;
+		}
+		#box .news li{
+			width: 230px;
+			line-height: 120px;
+			float: left;
+			text-align:center; 
+		}
+		#box .news li:hover{
+			color:orangered;
+		}
+		#box .news{
+			display: none;
+			
+		}
+		#box li{
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul class="menu">
+			<li class="select">选项卡1</li>
+			<li>选项卡2</li>
+			<li>选项卡3</li>
+			<li>选项卡4</li>
+			<li>选项卡5</li>
+		</ul>
+		<ul class="news" style="display: inline-block;">
+			<li>标题1</li>
+			<li>标题2</li>
+			<li>标题3</li>
+			<li>标题4</li>
+		</ul>
+		<ul class="news">
+			<li>标题5</li>
+			<li>标题6</li>
+			<li>标题7</li>
+			<li>标题8</li>
+		</ul>
+		<ul class="news">
+			<li>标题9</li>
+			<li>标题10</li>
+			<li>标题11</li>
+			<li>标题12</li>
+		</ul>
+		<ul class="news">
+			<li>标题13</li>
+			<li>标题14</li>
+			<li>标题15</li>
+			<li>标题16</li>
+		</ul>
+		<ul class="news">
+			<li>标题17</li>
+			<li>标题18</li>
+			<li>标题19</li>
+			<li>标题20</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script>
+	window.onload=function(){
+		//获得所有选项卡
+
+		var menus = document.querySelectorAll(".menu li")
+		var news = document.querySelectorAll(".news")
+		//遍历
+		for (var i = 0; i < menus.length; i++) {
+			menus[i].index=i;
+			menus[i].onmouseover=function(){
+				for (var i = 0; i < menus.length; i++) {
+				 menus[i].className="";
+				 news[i].style.display="none";
+				}
+				this.className="select";
+				news[this.index].style.display="inline-block";
+			}
+		}
+	}
+</script>

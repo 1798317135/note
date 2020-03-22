@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // alert("hellow word");
+        // console.log('hello word')
+        // console.warn("警告")
+        // console.error("错误")
+        // window.prompt("hello word","default")
+        // window.confirm("How are you?")
+        console.count(x) //可以记录x调用次数
+        console.assert(x,msg)//如果false 输出msg
+
+        // ---------------- console.time 
+        // 可以用来检测程序执行时间
+        console.time()
+        var i = 0;
+        while (true) {
+            i++;
+            if (i > 10000) {break;}
+        }
+        console.timeEnd()
+    </script>
+</body>
+</html>

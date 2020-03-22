@@ -3,28 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-
 <script type="text/html"><!-- javascript的数据储存原理-->
-			/*JS内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
-			其中栈存放变量，堆存放复杂对象，池存放常量。
-			1.0基础数据类型与栈内存
+	/*JS内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
+	其中栈存放变量，堆存放复杂对象，池存放常量。
+	1.0基础数据类型与栈内存
 
-				1.1数据在栈内存中的存储与使用方式类似于数据结构中的堆栈数据结构，遵循后进先出的原则。
-				
-			2.0：引用数据类型与堆内存
-				2.1因此当我们要访问堆内存中的引用数据类型时，实际上我们首先是从栈中获取了该对象的地址引用（或者地址指针），然后再从堆内存中取得我们需要的数据。
-					var m={a:10,b:20};
-					var c=m;
-					console.log(c);
-					c.a=11;
-					console.log(m.a);
-				2.2在栈内存中的数据发生复制行为时，系统会自动为新的变量分配一个新值。
-					var a=10;
-					var b=a; 这就相当于b在栈没存中新创建了b这个独立的变量当a发生改变的时候不会影响b的值；
-					var obj={a:10,b:11}；
-					var dd=obj；相当于在栈内存中开辟一个独立的引用但是他们两个指向同一个堆内存，当堆内存发生改变他们对应的值也会发生改变。
-				2.3 不用的变量没有及时释放造成内存泄漏，系统的垃圾回收机制会释放没有引用的内存，自己可以功通过
-				引用=null手动清除引用 在下一轮的内存清理清除内存*/</script>
+	1.1数据在栈内存中的存储与使用方式类似于数据结构中的堆栈数据结构，遵循后进先出的原则。
+	
+	2.0：引用数据类型与堆内存
+	2.1因此当我们要访问堆内存中的引用数据类型时，实际上我们首先是从栈中获取了该对象的地址引用（或者地址指针），然后再从堆内存中取得我们需要的数据。
+		var m={a:10,b:20};
+		var c=m;
+		console.log(c);
+		c.a=11;
+		console.log(m.a);
+	2.2在栈内存中的数据发生复制行为时，系统会自动为新的变量分配一个新值。
+		var a=10;
+		var b=a; 这就相当于b在栈没存中新创建了b这个独立的变量当a发生改变的时候不会影响b的值；
+		var obj={a:10,b:11}；
+		var dd=obj；相当于在栈内存中开辟一个独立的引用但是他们两个指向同一个堆内存，当堆内存发生改变他们对应的值也会发生改变。
+	2.3 不用的变量没有及时释放造成内存泄漏，系统的垃圾回收机制会释放没有引用的内存，自己可以功通过
+	引用=null手动清除引用 在下一轮的内存清理清除内存*/</script>
 <script type="text/html"><!-- 定义变量 -->
 	//变量名严格区分大小写
 	var name;
@@ -86,34 +85,34 @@
 	var str = bool.toString();
 	console.log(typeof str);
 	console.log(typeof bool);
-	//String()
+	//String() 强转
 	var un = undefined;
 	var str = String(un);
 	console.log(typeof un);
 	console.log(typeof str); 
-	//+号
+	//+ ""
 	var flo = 1.2;
 	var str = flo + '';
 	console.log(typeof flo);
 	console.log(typeof str)
 </script>
 <script type="text/html"><!-- 转换为number类型 -->
-	//Number()函数 空格或者空的字符串会转换成0，如果不是纯数字的字符串会转换成NaN非法的数字；
+	//Number()函数 空格或者空的字符串会转换成0，如果不是纯数字的字符串会转换成NaN非法的数字；快捷方式在前面加 + 就等于调用Number()方法
 	var str = '456';
 	console.log(typeof str);
-	var num = Number(str);
+	var num = Number(str); // +str
 	console.log(typeof num);
 
 	var str = '456hehhe';
 	console.log(typeof str);
-	var num = Number(str);
+	var num = Number(str); // +str
 	console.log(num)
 
 	//parseInt()提取字符串前面的整数 如果前面没有数字 则返回NaN非法的数字 第二个参数是进制;
 	var str = '456.212hehhe44546';
 	var num = parseInt(str);
 	console.log(num);
-	//parseFlost()提取字符串前面的浮点数 如果前面没有数字 则返回NaN非法的数字 第二个参数是进制
+	//parseFlost()提取字符串前面合规的浮点数 如果前面没有数字 则返回NaN非法的数字 第二个参数是进制
 	var num = parseFloat(str);
 	console.log(num);
 </script>
@@ -260,7 +259,7 @@
 	var num = arr.pop();
 	console.log(num);
 	console.log(arr);
-	//push 将新元素添加到数组的末尾 返回最后一个元素的位置从1开始
+	//push 	向数组的末尾添加一个或更多元素，并返回新元素个数。
 	var item = arr.push("你好",445,[12,"呵呵"]);
 	console.log(item);
 	console.log(arr);
@@ -293,7 +292,7 @@
 		return b-a;
 	});//降序
 	console.log(arr);
-	//slice截取数组 不影响原数组
+	//slice截取数组 不影响原数组,半开半闭区间；
 	var item6 = arr.slice(2,8);//
 	console.log(item6);
 	console.log(arr);
@@ -461,7 +460,7 @@
 	var bigDog = new Dog({name:"大花",age:20,friends:["大大","小小"]})
 	console.log(bigDog);
 </script>
-<script type="text/html"><!-- prototype 和construction-->
+<script type="text/html"><!-- prototype 和construction 和 __proto__-->
 	//prototype在构造函数里创建共享的值或者方法；
 	var arr = new Array();
 	Array.prototype.eat=function(){
@@ -476,6 +475,8 @@
 	console.log(arr1.name);
 	//constructor
 	console.log(arr.constructor===arr1.constructor);//判断是否出自同一个构造函数
+
+	// __proto__ 指向实例构建函数得prototpye
 </script>
 <script type="text/html"><!-- 构造函数的终极写法 -->
 	function Persen(option){

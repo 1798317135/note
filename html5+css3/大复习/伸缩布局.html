@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        div{
+            max-width: 800px;
+            height: 500px;
+            background-color: pink;
+            margin:0 auto;
+            /*定义盒子为弹性盒子*/
+            -webkit-display: flex;
+            display: flex;
+            /*
+                定义主轴方向
+                row 水平对齐
+                row-reverse 水平反转对齐
+                colum 垂直对齐
+                colum-reverse 垂直翻转对齐
+            */
+            /*flex-direction: row;*/
+            /*换行方式
+                wrap 换行
+                nowrap 不换行
+                wrap-reverse 反转换行
+            */
+            /*flex-wrap: wrap;*/
+            /*简写形式*/
+            flex-flow: row nowrap;
+
+            /*
+             定义主轴的对齐方式
+                flex-start（默认值）：左对齐
+                flex-end：右对齐
+                center： 居中
+                space-between：两端对齐，项目之间的间隔都相等。
+                space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+            */
+            justify-content: space-between;
+
+            /*交叉轴的对齐方式*/
+            /*align-items: baseline;*/
+
+            /*多上对齐方式*/
+            align-content: center;
+        }
+        span{
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            background-color: green;
+            margin:2px;
+        }
+        span:nth-child(1){
+            /*item的排序 数值越小在排序的项目当中越靠前*/
+            /*order: 1;*/
+            flex:1 2;
+        }
+         span:nth-child(2){
+            /*order: 2;*/
+            flex:1 2; 
+        }
+        span:nth-child(3){
+            /*放大比例*/
+            /*flex-grow: 0;*/
+            /*缩小比例*/
+            /*flex-shrink: 0;*/
+            /*flex:0 2 none;*/
+            /*可以单独定义item交叉轴的对齐方式*/
+            align-self: center;
+        }
+        span:nth-child(4){
+            /*flex-grow: 2;*/
+            flex:1 2;
+        }
+        span:nth-child(5){
+/*            flex-shrink:1;*/
+            flex:1 2;
+        }
+        span:nth-child(6){
+            /*在主轴上占据固定的固定的孔家你*/
+            /*flex-basis: 20%;*/
+            flex:1 2;
+        }
+        span:nth-child(7){
+            /*flex-grow flex-shrik flex-basis 的缩写形式 
+            默认值是 0 1 auto。后两个属性可选。
+            auto (1 1 auto) 和 none (0 0 auto)*/
+            flex:1 2;
+        }
+         span:nth-child(8){
+            /*flex-grow flex-shrik flex-basis 的缩写形式 
+            默认值是 0 1 auto。后两个属性可选。
+            auto (1 1 auto) 和 none (0 0 auto)*/
+            flex:1 2;
+        }
+         span:nth-child(9){
+            /*flex-grow flex-shrik flex-basis 的缩写形式 
+            默认值是 0 1 auto。后两个属性可选。
+            auto (1 1 auto) 和 none (0 0 auto)*/
+            flex:1 2;
+        }
+         span:nth-child(10){
+            /*flex-grow flex-shrik flex-basis 的缩写形式 
+            默认值是 0 1 auto。后两个属性可选。
+            auto (1 1 auto) 和 none (0 0 auto)*/
+            flex:1 2;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span class="four">4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+        <span>10</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="p_col">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p>12</p>
+        <p></p>
+    </div>
+</body>
+<script>
+    /*首先 NodeList 是 DOM 快照，节点数量和类型的快照，就是对节点增删，NodeList 感觉不到，但是对节点内部内容修改，是可以感觉到的，比如修改innerHTML。
+    HtmlCollection 是 live 绑定的，节点的增删是敏感的。*/
+    // collection 是html元素集合
+    var tag = document.getElementsByTagName("p");
+    // tag[0].remove();
+    // console.log(tag)
+    // Nodelist 是文档节点集合
+    var tag = document.querySelectorAll("p");
+    tag[0].remove();
+    console.log(tag)
+</script>
+</html>

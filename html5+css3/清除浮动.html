@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>清除浮动</title>
+	<style type="text/css" media="screen">
+		ul{
+			background-color: red;
+			list-style: none;
+			*zoom:1;
+		}
+		ul:first-of-type::after{
+			content: "";             /*  用伪标签做内墙法可以清除浮动*/
+			display: block;
+			height: 0;
+			visibility: hidden;
+			clear: both;
+		}
+		ul:first-of-type{
+			margin-bottom: 50px;
+		}
+		ul:last-of-type{
+			margin-top: 60px;
+		}
+		ul li{
+			background-color: #ccc;
+			text-align: center;
+			width: 100px;
+			line-height: 60px;
+			border-left:1px black solid;
+			float: left;
+		}
+		ul li:nth-of-type(1){
+			border:none;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>你好哈</li>
+		<li>你好哈</li>
+		<li>你好哈</li>
+		<li>你好哈</li>
+		<li>你好哈</li>
+	</ul>
+	<ul>
+		<li>你好哈</li>
+		<li>你好哈</li>
+		<li>你好哈</li>
+		<li>你好哈</li>
+		<li>你好哈</li>
+	</ul>
+</body>
+</html>

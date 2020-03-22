@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <p class="line"></p>
+        <span><a href="">1</a></span>
+        <span><a href="">2</a></span>
+        <span><a href="">3</a></span>
+    </div>
+</body>
+<script>
+    var res0 = document.getElementsByClassName("line")[0];
+    var res1 = document.getElementsByTagName("a")[0];
+    var res = res0.nextElementSibling || res0.nextSibling;
+    console.log(res)
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>焦点图</title>
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+			width: 500px;
+			height: 500px;
+			border:2px black solid;
+			margin:0 auto;
+			margin-top: 100px;
+			position:relative;
+		}
+		span{
+			display: inline-block;
+			width: 60px;
+			background-color: rgba(0,0,0,0.3);
+			text-align: center;
+			line-height: 80px;
+			color: white;
+			font-size: 40px;
+		}
+		div .box1{
+			position: absolute;
+			left:5px;
+			top:50%;
+			margin-top:-20px
+		}
+		div .box2{
+			position: absolute;
+			right:5px;
+			top:50%;
+			margin-top: -20px;
+		}
+		div ul{
+			height: 30px;
+			width: 200px;
+			background-color: green;
+			list-style: none;
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+
+		}
+		div ul li{
+			float: left;
+			width: 40px;
+			box-sizing: border-box;
+			border:1px pink solid;
+			line-height: 30px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="images/gouqi.jpg" width="500px" alt="">
+		<span class="box1">&lt;</span>
+		<span class="box2">&gt;</span>
+		<ul>
+			<li class="1">1</li>
+			<li class="2">2</li>
+			<li class="3">3</li>
+			<li class="4">4</li>
+			<li class="5">5</li>
+		</ul>
+	</div>
+</body>
+</html>

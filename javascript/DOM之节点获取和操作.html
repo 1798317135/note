@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		#box{
+			width: 300px;
+			height: 300px;
+			border: 1px solid red;
+		}
+		#span{
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			border:1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<span>eee</span>
+		<p>sdf</p>
+		<span id="span">
+			<a href="#" title="">百度一下</a>
+		</span>
+		<button class="btn">点我</button>
+		<span>哈哈哈</span>
+		<p></p>
+	</div>
+</body>
+</html>
+
+<script type="text/html"> <!-- 获取节点 -->
+	// 通过id 获取单个
+	var box = document.getElementById("box");
+	// 通过类名 获取节点collction集合
+	var box = document.getElementsByClassName("btn");
+	// 通过标签名来获取节点collction集合
+	var box = document.getElementsByTagName("p");
+	// 通过选择器活得单个元素
+	var box = document.querySelector(".btn");
+	// 通过选择器来获得Nodelist集合
+	var box = document.querySelectorAll("span");
+	console.log(box)
+</script>
+<script type="text/html"><!-- parentNode父节点 -->
+	window.onload=function(){
+		var a = document.getElementsByTagName("a")[0];
+		var span=document.querySelector("#span");
+		var box=span.parentNode;
+		console.log(span);
+		console.log(a);
+		console.log(box);
+		var parentNode=a.parentNode.parentNode;
+		console.log(parentNode);
+		var btn = document.getElementsByTagName("button")[0];
+		btn.onclick=function(){
+			box.style.backgroundColor="red";
+		}
+	}
+</script>
+<script type="text/html"><!-- nextSiling,previouSiling兄弟节点 -->
+	window.onload=function(){
+		var span = document.querySelectorAll("span")[1];
+		//下一个兄弟节点
+		var next = span.nextElementSibling||span.nextSibling;
+		console.log(next);
+		//上一个兄弟节点
+		var previous = span.previousElementSibling||span.previous;
+		console.log(previous);
+		var children=span.
+	}
+</script>
+<script type="text/html"><!-- 先获得父节点parentNode在获得任意子节点就是自己的任意兄弟节点 -->
+
+	var p = document.querySelectorAll("p")[0];
+	console.log(p);
+	console.log(p.parentNode.children[0]);
+	console.log(p.parentNode.children[1]);
+	console.log(p.parentNode.children[2]);
+	console.log(p.parentNode.children[10]);
+	
+</script>
+<script type="text/html"><!-- children获得子节点 -->
+	window.onload=function(){
+		var box=document.getElementById("box");
+		console.log(box);
+		//获取第一个子节点
+		console.log(box.firstElementChild||box.firstChild);
+		//获取最后一个子节点
+		console.log(box.lastElementChild||box.lastChild);
+		//所有子节点childeNodes
+		var AllNodeList=[];
+		var NodeList = box.childNodes;
+		console.log(NodeList);
+
+		for (var i=0; i<NodeList.length; i++) {
+			var node=NodeList[i];
+			if (node.nodeType===1) {//如果nodeType===1
+				AllNodeList.push(node);
+			}
+		}
+		console.log(AllNodeList);
+		//获取所有子节点
+		console.log(box.children[0])
+	}
+</script>
+<script type="text/html"><!-- 节点的增删改查克隆createElement,romove,appendChild,insertBefore,cloneNode -->
+	window.onload=function(){
+		// 创建节点
+		var box= document.getElementById("box");
+		console.log(box);
+		var btn=document.querySelector("button");
+		var img = document.createElement("img");
+		var img1= document.createElement("img");
+		img.src="../html5/images/demo1.jpg";
+		img1.src="../html5/images/demo2.jpg";
+		//插入节点
+		box.appendChild(img);//在盒子的尾部追加节点
+		box.insertBefore(img1,btn);//插在某个标签的前面
+		//删除节点
+		img.remove();
+		img1.remove();
+		btn.remove();
+		//复制节点
+		var newtag=box.cloneNode(false);//只克隆自己
+		var newtag1=box.cloneNode(true);//克隆全部包括子节点
+		console.log(newtag);
+		console.log(newtag1);
+	}
+</script>

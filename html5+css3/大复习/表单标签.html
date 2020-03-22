@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 表单 -->
+    <form action="www.baidu.com" method="get" accept-charset="utf-8">
+        <fieldset>
+            <legend>title or explanatory caption</legend>
+            <!-- 文本框 -->
+            <label for="text">文本框:</label>
+            <input id="text" type="text" name="text" value="">
+            <hr>
+            <!-- 文本域输入框 -->
+            <label for="tr">文本域:</label>
+            <textarea id="tr" name="aa"></textarea>
+            <hr>
+            <!-- 密码框 -->
+            <label for="pwd">密码框:</label>
+            <input id="pwd" type="password" name="pwd" value="" placeholder="5-10位数" required="required">
+            <hr>
+            <!-- 单选框 -->
+            <label>男：<input type="radio" name="rad" value="man" checked></label>
+            <label>女：<input type="radio" name="rad" value="girl"></label>
+            <hr>
+            <!-- 复选框 -->
+            <label>aa:<input type="checkbox" name="ckb" value="aa" checked></label>
+            <label>bb:<input type="checkbox" name="ckb" value="bb" checked></label>
+            <label>cc:<input type="checkbox" name="ckb" value="cc"></label>
+            <hr>
+            <!-- 隐藏域 -->
+            <input type="hidden" name="hidden" value="no">
+            <!-- submit提交按钮 -->
+            <button type="submit">提交按钮</button>
+            <hr>
+            <!-- reset重置按钮 -->
+            <button type="reset">重置按钮</button>
+            <hr>
+            <!-- datalist待选输入框 -->
+            <label for="ld">待选框:</label>
+            <input id="ld" type="text" list="dl">
+            <datalist id="dl">
+                <option>北京</option>
+                <option>上海</option>
+                <option>郑州</option>
+            </datalist>
+            <hr>
+            <!-- 下拉框 -->
+            下拉框:
+            <select name="">
+                <optgroup label="平顶山">
+                    <option>汝州</option>
+                    <option>宝丰</option>
+                </optgroup>
+                <optgroup label="洛阳">
+                    <option>洛阳</option>
+                    <option>洛龙区</option>
+                </optgroup>
+            </select>
+            <hr>
+            <!-- html5新增的表单标签 -->
+            颜色输入框:<input type="color" name="" value="" placeholder="">
+            <hr>
+            <!-- date日期选择输入框 -->
+            日期输入框:<input type="date" name="" value="" placeholder="">
+            <hr>
+            <!-- datetime时间输入框 -->
+            时间输入框:<input type="time" name="" value="" placeholder="">
+            <hr>
+            <!-- datetime-local日期加时间输入框 -->
+            日期加时间输入框:<input type="datetime-local" name="" value="" placeholder="">
+            <hr>
+            <!-- email输入框 -->
+            email输入框:<input type="email" name="" value="" placeholder="">
+            <hr>
+            <!-- number输入框 -->
+            number输入框:<input type="number" name="" value="10" placeholder="">
+            <hr>
+            <!-- url -->
+            url输入框:<input type="url" name="" value="" placeholder="">
+            <hr>
+            <!-- range滑块 -->
+            range滑块:<input type="range" name="" value="" placeholder="">
+            <hr>
+            <!-- search搜索框 -->
+            百度搜索框:<input type="search" name="" value="" placeholder="">
+        </fieldset>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>//<!-- setAttribute,getAttribute,RomoveAtteribute,节点属性的这只获取和删除 -->
+    window.onload=function(){
+        var box=document.querySelector("#box");
+        var img=document.createElement("img");
+        //设置节点的属性setAttribute
+        img.src="../html5/images/a1.png";
+        img.setAttribute("width","300px");
+        img.alt="nihao";
+        img.style.height="500px";
+        box.appendChild(img);
+        //获取属性getAttritube
+        console.log(img.src);
+        console.log(img.getAttribute("src"));
+        console.log(img.getAttribute("alt"));
+        console.log(img.getAttribute("alt")===img.alt);
+        console.log(img.width);
+        console.log(img.height);
+        console.log(img.getAttribute("width"));
+        //删除节点属性romoveAttritube
+        img.removeAttribute("width");
+        img.style.height="";
+    }
+</script>
+</html>
